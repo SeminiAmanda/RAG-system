@@ -16,7 +16,7 @@ import json
 import time
 from pathlib import Path
 
-from config import EMBED_MODEL, EMBED_WITH_HEADING, QUESTIONS_PATH
+from config import CHUNK_TAG, CHUNKS_PATH, EMBED_MODEL, EMBED_WITH_HEADING, QUESTIONS_PATH
 from retrieve import Retriever
 
 KS = [1, 3, 5, 10]
@@ -151,6 +151,8 @@ def main():
         "max_per_source": args.max_per_source,
         "n_answerable": n,
         "latency_ms": round(latency_ms),
+        "chunk_tag": CHUNK_TAG,
+        "chunks_path": str(CHUNKS_PATH),
         **metrics,
     }
     with open(OUT_DIR / "runs.jsonl", "a", encoding="utf-8") as f:

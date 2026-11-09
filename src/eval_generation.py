@@ -169,7 +169,7 @@ def main():
                 "gold_retrieved": any(p["source"] in gold for p in passages),
                 "gold_cited": any(s in gold for s in cited_sources),
                 "passages": [{"source": p["source"], "section": p["section"],
-                              "score": round(p["score"], 2)} for p in passages],
+                "prompt_version": os.getenv("PROMPT_VERSION", "1"),              "score": round(p["score"], 2)} for p in passages],
             }
             out.write(json.dumps(rec, ensure_ascii=False) + "\n")
             out.flush()

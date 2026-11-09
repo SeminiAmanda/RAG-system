@@ -5,14 +5,15 @@ chunk by size, and write data/processed/chunks.jsonl.
 import json
 import re
 from pathlib import Path
+import os 
 
 RAW_DIR = Path("data/raw")
-OUT_PATH = Path("data/processed/chunks.jsonl")
+OUT_PATH = Path(os.getenv("CHUNKS_PATH", "data/processed/chunks.jsonl"))
 
-TARGET_WORDS = 200      # aim for chunks of about this many words
-MAX_WORDS = 350         # hard ceiling for any single piece
-MIN_WORDS = 30          # drop chunks smaller than this
-OVERLAP_MAX_WORDS = 60  # carry the last paragraph into the next chunk if it is this short
+TARGET_WORDS = int(os.getenv("TARGET_WORDS", "200"))
+MAX_WORDS = int(os.getenv("MAX_WORDS", int(TARGET_WORDS * 1.75)))
+MIN_WORDS = 30
+OVERLAP_MAX_WORDS = int(os.getenv("OVERLAP_MAX_WORDS", int(TARGET_WORDS * 0.3)))
 
 HF_TAGS = (
     r"Tip|tip|frameworkcontent|pt|tf|jax|hfoptions|hfoption|Youtube|"
