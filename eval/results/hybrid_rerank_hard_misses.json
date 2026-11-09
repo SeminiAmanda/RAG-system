@@ -1,0 +1,14 @@
+[
+  {
+    "id": "h13",
+    "question": "how do I share my model through the Hub without opening a pull request to the main library?",
+    "gold": [
+      "transformers/contributing.md"
+    ],
+    "got": [
+      "transformers/model_sharing.md",
+      "transformers/model_sharing.md",
+      "transformers/model_sharing.md"
+    ]
+  }
+]

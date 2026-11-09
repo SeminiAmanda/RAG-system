@@ -1,0 +1,14 @@
+[
+  {
+    "id": "h11",
+    "question": "my training loss keeps spiking with big batches, any optimizer tip?",
+    "gold": [
+      "transformers/optimizers.md"
+    ],
+    "got": [
+      "accelerate/usage_guides/gradient_accumulation.md",
+      "accelerate/basic_tutorials/migration.md",
+      "accelerate/concept_guides/gradient_synchronization.md"
+    ]
+  }
+]

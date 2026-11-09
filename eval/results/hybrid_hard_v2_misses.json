@@ -1,0 +1,14 @@
+[
+  {
+    "id": "h04",
+    "question": "init_empty_weights",
+    "gold": [
+      "accelerate/usage_guides/big_modeling.md"
+    ],
+    "got": [
+      "accelerate/quicktour.md",
+      "accelerate/concept_guides/big_model_inference.md",
+      "transformers/modeling_rules.md"
+    ]
+  }
+]

@@ -1,0 +1,446 @@
+[
+  {
+    "id": "q01",
+    "answerable": true,
+    "score": 7.344107151031494,
+    "question": "How does the datasets library round slice boundaries when a percent split doesn't divide evenly?"
+  },
+  {
+    "id": "q02",
+    "answerable": true,
+    "score": 7.916957378387451,
+    "question": "How does pipeline parallelism reduce idle GPU time compared with plain model parallelism?"
+  },
+  {
+    "id": "q03",
+    "answerable": true,
+    "score": 8.093235969543457,
+    "question": "What command runs the KTO example script on Qwen2 0.5B?"
+  },
+  {
+    "id": "q04",
+    "answerable": true,
+    "score": 6.558541774749756,
+    "question": "Which loss does the TRL distillation trainer use between the student and teacher distributions?"
+  },
+  {
+    "id": "q05",
+    "answerable": true,
+    "score": 5.18980598449707,
+    "question": "How do updated weights reach the vLLM server during asynchronous GRPO training?"
+  },
+  {
+    "id": "q06",
+    "answerable": true,
+    "score": 6.283997058868408,
+    "question": "How can I turn off Intel Gaudi support when launching a script with Accelerate?"
+  },
+  {
+    "id": "q07",
+    "answerable": true,
+    "score": 4.416519641876221,
+    "question": "What learning rate range is suggested for DeLoRA compared with standard LoRA?"
+  },
+  {
+    "id": "q08",
+    "answerable": true,
+    "score": 5.311227798461914,
+    "question": "How can I open the environment files of a terminal-bench task that I loaded from the Hub?"
+  },
+  {
+    "id": "q09",
+    "answerable": true,
+    "score": 6.772879123687744,
+    "question": "Why was 4-bit inference slower than 8-bit in the LLM optimization tutorial?"
+  },
+  {
+    "id": "q10",
+    "answerable": true,
+    "score": 5.737603187561035,
+    "question": "What counts as a rollout in async distillation, and why does a slow teacher matter?"
+  },
+  {
+    "id": "q11",
+    "answerable": false,
+    "score": -9.284540176391602,
+    "question": "What is the difference between XGBoost and LightGBM?"
+  },
+  {
+    "id": "q12",
+    "answerable": false,
+    "score": -9.285404205322266,
+    "question": "How do I connect LangChain to a Chroma vector store?"
+  },
+  {
+    "id": "q13",
+    "answerable": false,
+    "score": 2.652620553970337,
+    "question": "How do I use groupby and aggregate functions in pandas?"
+  },
+  {
+    "id": "q14",
+    "answerable": false,
+    "score": -2.408651351928711,
+    "question": "How do I tune hyperparameters with Keras Tuner?"
+  },
+  {
+    "id": "q15",
+    "answerable": false,
+    "score": -2.521787643432617,
+    "question": "What are the best practices for deploying a model with Kubernetes?"
+  },
+  {
+    "id": "q16",
+    "answerable": true,
+    "score": 5.1213531494140625,
+    "question": "How can I use Dataset.map to generate extra versions of a sentence with a fill-mask model?"
+  },
+  {
+    "id": "q17",
+    "answerable": true,
+    "score": 5.7141828536987305,
+    "question": "What does a Hub-first release mean for adding a new model, and what is its downside?"
+  },
+  {
+    "id": "q18",
+    "answerable": true,
+    "score": 7.365185737609863,
+    "question": "Which processor do I load to preprocess images and text for LayoutLMv2 document question answering?"
+  },
+  {
+    "id": "q19",
+    "answerable": true,
+    "score": 6.665461540222168,
+    "question": "What does torch.compile do and what are its main benefits when used with Accelerate?"
+  },
+  {
+    "id": "q20",
+    "answerable": true,
+    "score": 7.705685615539551,
+    "question": "What checkpoint format does Megatron-LM need for fine-tuning, and how do I convert a Hugging Face model to it?"
+  },
+  {
+    "id": "q21",
+    "answerable": true,
+    "score": 3.2255823612213135,
+    "question": "What is colocate mode for vLLM generation in GRPOTrainer, and what is its trade-off?"
+  },
+  {
+    "id": "q22",
+    "answerable": true,
+    "score": 5.664262294769287,
+    "question": "Which register_buffer calls does rule TRF058 flag, and which ones are exempt?"
+  },
+  {
+    "id": "q23",
+    "answerable": true,
+    "score": 6.867128372192383,
+    "question": "What checks does load_dataset run to confirm a dataset was generated completely?"
+  },
+  {
+    "id": "q24",
+    "answerable": true,
+    "score": 8.061406135559082,
+    "question": "Which files does a processor's save_pretrained write, and where do the tokenizer and chat template go?"
+  },
+  {
+    "id": "q25",
+    "answerable": true,
+    "score": 8.22832202911377,
+    "question": "When using several models with DeepSpeed in Accelerate, which plugin is enabled by default and how can I verify it?"
+  },
+  {
+    "id": "q26",
+    "answerable": true,
+    "score": 6.284520626068115,
+    "question": "Which mixed precision format is recommended for TPU training with Accelerate, and how do I enable it?"
+  },
+  {
+    "id": "q27",
+    "answerable": true,
+    "score": 5.995178699493408,
+    "question": "How do I get the underlying wandb tracker object from an Accelerator?"
+  },
+  {
+    "id": "q28",
+    "answerable": true,
+    "score": 6.443719863891602,
+    "question": "What does the cpu_offload option do when configuring FSDP2 in Transformers?"
+  },
+  {
+    "id": "q29",
+    "answerable": true,
+    "score": 8.667343139648438,
+    "question": "How do I switch between runtimes when exporting a model with the Transformers exporters?"
+  },
+  {
+    "id": "q30",
+    "answerable": true,
+    "score": 8.195314407348633,
+    "question": "Which distributed training setups have FP8 example scripts in Accelerate?"
+  },
+  {
+    "id": "q31",
+    "answerable": true,
+    "score": 8.171530723571777,
+    "question": "Why is it easy to manage multiple tasks with one base model using PEFT adapters?"
+  },
+  {
+    "id": "q32",
+    "answerable": true,
+    "score": 5.116972923278809,
+    "question": "What do I get back from an Audio feature if I set decode=False?"
+  },
+  {
+    "id": "q33",
+    "answerable": true,
+    "score": 7.485591888427734,
+    "question": "How do I check that PyTorch can see my NVIDIA GPUs after installing Transformers?"
+  },
+  {
+    "id": "q34",
+    "answerable": true,
+    "score": 4.022616863250732,
+    "question": "Why is splitting a batch across GPUs by loading a full model copy on each one memory-intensive?"
+  },
+  {
+    "id": "q35",
+    "answerable": true,
+    "score": 6.487957000732422,
+    "question": "How does GRPOTrainer run several async reward functions, and when is that useful?"
+  },
+  {
+    "id": "q36",
+    "answerable": true,
+    "score": 6.718386173248291,
+    "question": "What are the default values of batch_size and writer_batch_size for map on image datasets, and why would I lower them?"
+  },
+  {
+    "id": "q37",
+    "answerable": true,
+    "score": 7.501406669616699,
+    "question": "Which StateDictType is recommended for checkpointing FSDP models with Accelerate, and how do I save a checkpoint?"
+  },
+  {
+    "id": "q38",
+    "answerable": true,
+    "score": 3.038646697998047,
+    "question": "What is the trade-off of the AutoRound best recipe compared with the standard recipe?"
+  },
+  {
+    "id": "q39",
+    "answerable": true,
+    "score": 7.278487682342529,
+    "question": "How much memory does an 8B model need in float32 by default, and how can I reduce it?"
+  },
+  {
+    "id": "q40",
+    "answerable": true,
+    "score": 6.214277267456055,
+    "question": "What does the objective/kl metric measure in Online DPO training?"
+  },
+  {
+    "id": "h01",
+    "answerable": true,
+    "score": 5.1731767654418945,
+    "question": "TRF058"
+  },
+  {
+    "id": "h02",
+    "answerable": true,
+    "score": 5.005833625793457,
+    "question": "weight_sync_steps"
+  },
+  {
+    "id": "h03",
+    "answerable": true,
+    "score": 7.0342698097229,
+    "question": "max_inflight_tasks"
+  },
+  {
+    "id": "h04",
+    "answerable": true,
+    "score": 7.00057315826416,
+    "question": "init_empty_weights"
+  },
+  {
+    "id": "h05",
+    "answerable": true,
+    "score": 8.327571868896484,
+    "question": "get_active_deepspeed_plugin"
+  },
+  {
+    "id": "h06",
+    "answerable": true,
+    "score": 6.731273174285889,
+    "question": "get_base_model_state_dict"
+  },
+  {
+    "id": "h07",
+    "answerable": true,
+    "score": 7.357770919799805,
+    "question": "_supports_assign_param_buffer"
+  },
+  {
+    "id": "h08",
+    "answerable": true,
+    "score": 7.297496795654297,
+    "question": "Accelerator.get_tracker wandb"
+  },
+  {
+    "id": "h09",
+    "answerable": true,
+    "score": 4.590360641479492,
+    "question": "quick way to check that my PyTorch install can use my NVIDIA graphics cards"
+  },
+  {
+    "id": "h10",
+    "answerable": true,
+    "score": 4.85180139541626,
+    "question": "I stored audio in a dataset but I want the file path, not decoded arrays"
+  },
+  {
+    "id": "h11",
+    "answerable": true,
+    "score": 3.226541042327881,
+    "question": "my training loss keeps spiking with big batches, any optimizer tip?"
+  },
+  {
+    "id": "h12",
+    "answerable": true,
+    "score": 0.5260260105133057,
+    "question": "can I run several reward functions that call web services at the same time?"
+  },
+  {
+    "id": "h13",
+    "answerable": true,
+    "score": 2.329740524291992,
+    "question": "I built a brand-new model architecture; can I release it for Transformers users without opening a pull request to the library?"
+  },
+  {
+    "id": "h14",
+    "answerable": true,
+    "score": 1.522525668144226,
+    "question": "which gradient compression options cut communication cost across GPUs?"
+  },
+  {
+    "id": "h15",
+    "answerable": true,
+    "score": 0.8902838230133057,
+    "question": "how do I lay out 4 accelerators as a grid for splitting a model at inference?"
+  },
+  {
+    "id": "h16",
+    "answerable": true,
+    "score": 4.816699028015137,
+    "question": "how do I talk to my local transformers server using the Hugging Face client?"
+  },
+  {
+    "id": "h17",
+    "answerable": true,
+    "score": 5.5528764724731445,
+    "question": "I want to contribute code to PEFT, what are the first steps?"
+  },
+  {
+    "id": "h18",
+    "answerable": true,
+    "score": 6.021476745605469,
+    "question": "what is the slowest but most accurate way to quantize to 4 bits with AutoRound?"
+  },
+  {
+    "id": "h19",
+    "answerable": true,
+    "score": 5.216315269470215,
+    "question": "what do I do when torch.export chokes on a pattern in my model during export?"
+  },
+  {
+    "id": "h20",
+    "answerable": true,
+    "score": 3.0786049365997314,
+    "question": "which logged metric shows how random my policy's choices are in online DPO?"
+  },
+  {
+    "id": "u01",
+    "answerable": false,
+    "score": 2.421475648880005,
+    "question": "How do I enable differential privacy when training with Accelerate?"
+  },
+  {
+    "id": "u03",
+    "answerable": false,
+    "score": 3.1279218196868896,
+    "question": "What does the --turbo_mode flag do in accelerate launch?"
+  },
+  {
+    "id": "u04",
+    "answerable": false,
+    "score": 5.483107089996338,
+    "question": "How do I set the lora_magic_rank parameter in LoraConfig?"
+  },
+  {
+    "id": "u05",
+    "answerable": false,
+    "score": -2.6237871646881104,
+    "question": "What does the use_quantum_sampling option of DPOTrainer control?"
+  },
+  {
+    "id": "u06",
+    "answerable": false,
+    "score": 3.7964038848876953,
+    "question": "What does load_dataset(..., auto_clean=True) do?"
+  },
+  {
+    "id": "u07",
+    "answerable": false,
+    "score": 1.6369357109069824,
+    "question": "How do I fine-tune GPT-4 through the OpenAI fine-tuning API?"
+  },
+  {
+    "id": "u08",
+    "answerable": false,
+    "score": -3.576132297515869,
+    "question": "How do I train an agent to play Atari Pong with reinforcement learning?"
+  },
+  {
+    "id": "u09",
+    "answerable": false,
+    "score": -11.169532775878906,
+    "question": "What is the boiling point of water at sea level?"
+  },
+  {
+    "id": "u10",
+    "answerable": false,
+    "score": 2.8144030570983887,
+    "question": "How do I write a SQL query that joins two tables?"
+  },
+  {
+    "id": "u11",
+    "answerable": false,
+    "score": -6.906530380249023,
+    "question": "Should I use Flask or Django for a REST API?"
+  },
+  {
+    "id": "u12",
+    "answerable": false,
+    "score": -5.775134086608887,
+    "question": "How do I do time-series forecasting with Prophet?"
+  },
+  {
+    "id": "u13",
+    "answerable": false,
+    "score": 1.0284656286239624,
+    "question": "How do I train a gradient boosted tree with scikit-learn's GradientBoostingClassifier?"
+  },
+  {
+    "id": "u14",
+    "answerable": false,
+    "score": -6.123085021972656,
+    "question": "How do I build a recommender system with collaborative filtering?"
+  },
+  {
+    "id": "u16",
+    "answerable": false,
+    "score": 1.0724420547485352,
+    "question": "How do I convert a Hugging Face model to Core ML for iOS?"
+  }
+]

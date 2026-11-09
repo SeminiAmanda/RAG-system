@@ -1,0 +1,21 @@
+data/raw/
+__pycache__/
+.env
+.venv/
+data/
+.venv/
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Environment variables
+.env
+.env.*
+
+# Generated data
+data/

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "h04",
+    "question": "init_empty_weights",
+    "gold": [
+      "accelerate/usage_guides/big_modeling.md"
+    ],
+    "got": [
+      "accelerate/quicktour.md",
+      "accelerate/concept_guides/big_model_inference.md",
+      "accelerate/usage_guides/quantization.md"
+    ]
+  },
+  {
+    "id": "h16",
+    "question": "how do I talk to my local transformers server using the Hugging Face client?",
+    "gold": [
+      "transformers/serve-cli/serving.md"
+    ],
+    "got": [
+      "transformers/serve-cli/tiny_agents.md",
+      "transformers/tasks/object_detection.md",
+      "transformers/serve-cli/openweb_ui.md"
+    ]
+  }
+]

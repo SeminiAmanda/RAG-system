@@ -1,0 +1,26 @@
+[
+  {
+    "id": "h04",
+    "question": "init_empty_weights",
+    "gold": [
+      "accelerate/usage_guides/big_modeling.md"
+    ],
+    "got": [
+      "accelerate/quicktour.md",
+      "accelerate/concept_guides/big_model_inference.md",
+      "transformers/modeling_rules.md"
+    ]
+  },
+  {
+    "id": "h13",
+    "question": "how do I share my model through the Hub without opening a pull request to the main library?",
+    "gold": [
+      "transformers/contributing.md"
+    ],
+    "got": [
+      "transformers/model_sharing.md",
+      "transformers/model_sharing.md",
+      "transformers/model_sharing.md"
+    ]
+  }
+]

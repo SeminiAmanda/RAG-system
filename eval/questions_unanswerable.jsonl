@@ -1,0 +1,16 @@
+{"id": "u01", "question": "How do I enable differential privacy when training with Accelerate?", "answerable": false, "source": null, "section": null, "terms": ["differential privacy"]}
+{"id": "u02", "question": "How do I run TensorRT optimization through Transformers?", "answerable": false, "source": null, "section": null, "terms": ["tensorrt"]}
+{"id": "u03", "question": "What does the --turbo_mode flag do in accelerate launch?", "answerable": false, "source": null, "section": null, "terms": ["turbo_mode"]}
+{"id": "u04", "question": "How do I set the lora_magic_rank parameter in LoraConfig?", "answerable": false, "source": null, "section": null, "terms": ["lora_magic_rank"]}
+{"id": "u05", "question": "What does the use_quantum_sampling option of DPOTrainer control?", "answerable": false, "source": null, "section": null, "terms": ["quantum_sampling"]}
+{"id": "u06", "question": "What does load_dataset(..., auto_clean=True) do?", "answerable": false, "source": null, "section": null, "terms": ["auto_clean"]}
+{"id": "u07", "question": "How do I fine-tune GPT-4 through the OpenAI fine-tuning API?", "answerable": false, "source": null, "section": null, "terms": ["gpt-4"]}
+{"id": "u08", "question": "How do I train an agent to play Atari Pong with reinforcement learning?", "answerable": false, "source": null, "section": null, "terms": ["atari"]}
+{"id": "u09", "question": "What is the boiling point of water at sea level?", "answerable": false, "source": null, "section": null, "terms": ["boiling point"]}
+{"id": "u10", "question": "How do I write a SQL query that joins two tables?", "answerable": false, "source": null, "section": null, "terms": ["inner join"]}
+{"id": "u11", "question": "Should I use Flask or Django for a REST API?", "answerable": false, "source": null, "section": null, "terms": ["django"]}
+{"id": "u12", "question": "How do I do time-series forecasting with Prophet?", "answerable": false, "source": null, "section": null, "terms": ["prophet"]}
+{"id": "u13", "question": "How do I train a gradient boosted tree with scikit-learn's GradientBoostingClassifier?", "answerable": false, "source": null, "section": null, "terms": ["gradientboosting"]}
+{"id": "u14", "question": "How do I build a recommender system with collaborative filtering?", "answerable": false, "source": null, "section": null, "terms": ["collaborative filtering"]}
+{"id": "u15", "question": "How do I run Weights & Biases sweeps for hyperparameter search?", "answerable": false, "source": null, "section": null, "terms": ["sweep"]}
+{"id": "u16", "question": "How do I convert a Hugging Face model to Core ML for iOS?", "answerable": false, "source": null, "section": null, "terms": ["core ml"]}

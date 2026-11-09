@@ -1,0 +1,428 @@
+======================================================================
+transformers/add_new_model.md#1326 | transformers/add_new_model.md | Legacy model contribution > Implement tokenizer
+When both implementations have the same `input_ids`, add a tokenizer test file. This file is analogous to the modeling test files. The tokenizer test files should contain a couple of hardcoded integration tests.
+======================================================================
+datasets/process.md#617 | datasets/process.md | Process > Map > Batch processing > Data augmentation
+The [`~Dataset.map`] function could also be used for data augmentation. The following example generates additional words for a masked token in a sentence.
+
+Load and use the [RoBERTA](https://huggingface.co/roberta-base) model in 🤗 Transformers' [FillMaskPipeline](https://huggingface.co/transformers/main_classes/pipelines#transformers.FillMaskPipeline):
+
+```py
+>>> from random import randint
+>>> from transformers import pipeline
+
+>>> fillmask = pipeline("fill-mask", model="roberta-base")
+>>> mask_
+======================================================================
+transformers/contributing.md#1617 | transformers/contributing.md | Contribute to 🤗 Transformers > Adding a new model > Model addition timeline
+- Hub-first release: ship your model directly on the Hub via Transformers' [remote-code](https://github.com/huggingface/transformers/blob/main/docs/source/en/models.md#custom-models) support, with no upstream PR required.
+
+Popular Hub-first models often get integrated into Transformers later, which unlocks first-class docs, maintenance, and optimization. Hub-first is the lowest-friction way to add a model. However, it can be more fragile if a model requires weight conversion or other backward co
+======================================================================
+transformers/tasks/document_question_answering.md#2666 | transformers/tasks/document_question_answering.md | Document question answering > Preprocess the data
+The Document Question Answering task is a multimodal task, and you need to make sure that the inputs from each modality
+are preprocessed according to the model's expectations. Let's start by loading the [`LayoutLMv2Processor`], which internally combines an image processor that can handle image data and a tokenizer that can encode text data.
+
+```py
+>>> from transformers import AutoProcessor
+
+>>> processor = AutoProcessor.from_pretrained(model_checkpoint)
+```
+======================================================================
+accelerate/usage_guides/compilation.md#197 | accelerate/usage_guides/compilation.md | Compilation > Overview
+Pytorch 2.0 introduced `torch.compile`, a powerful feature that makes PyTorch code run faster by JIT-compiling PyTorch code into optimized kernels. Key features of `torch.compile` include:
+
+- **Performance Improvement**: Significantly speeds up model execution by optimizing the computation graph.
+- **Ease of Use**: Requires minimal code changes to implement, making it highly accessible.
+- **Compatibility**: Works seamlessly with existing PyTorch code and models.
+
+When used with Accelerate, `torc
+======================================================================
+accelerate/usage_guides/megatron_lm.md#296 | accelerate/usage_guides/megatron_lm.md | Megatron-LM > Prepare Megaton-LM checkpoint
+If you want to fine-tune a model, make sure you have a torch dist format checkpoint ready. If you only have access to the huggingface model, please consider converting it to a torch dist format checkpoint acceptable to Megatron. One example can be using slime's script, take GLM models as an example:
+
+```
+source /your/path/to/slime/scripts/models/glm4.5-355B-A32B.sh
+srun torchrun --nproc-per-node 8 \
+   /your/path/to/slime/tools/convert_hf_to_torch_dist.py \
+    ${MODEL_ARGS[@]} \
+    --hf-checkp
+======================================================================
+trl/grpo_trainer.md#3363 | trl/grpo_trainer.md | GRPO Trainer > Customization > Speed up training with vLLM-powered generation > Option 1: Colocate mode
+In this mode, vLLM runs inside the trainer process and shares GPU memory with the training model. This avoids launching a separate server and can improve GPU utilization, but may lead to memory contention on the training GPUs. This is the default mode.
+
+```python
+from trl import GRPOConfig
+
+training_args = GRPOConfig(
+    ...,
+    use_vllm=True,  # vllm_mode="colocate" by default
+)
+```
+======================================================================
+transformers/modeling_rules.md#2194 | transformers/modeling_rules.md | Model structure rules > Rules reference > TRF058
+In modeling_*.py and modular_*.py, flags `register_buffer("<name>", ...)` calls whose buffer name is a string literal, on any receiver (`self`, or another module such as `layer.mamba`). A computed name -- a variable or f-string, e.g. one buffer per layer inside a loop -- has no attribute-assignment equivalent and is exempt. Since torch>=2.5 `nn.Buffer` registers a buffer through plain attribute assignment, like `nn.Parameter`. A buffer created by a method call only exists as a side effect of run
+======================================================================
+datasets/about_dataset_load.md#385 | datasets/about_dataset_load.md | Build and load > Maintaining integrity
+To ensure a dataset is complete, [`load_dataset`] will perform a series of tests on the downloaded files to make sure everything is there. This way, you don't encounter any surprises when your requested dataset doesn't get generated as expected. [`load_dataset`] verifies:
+
+- The number of splits in the generated `DatasetDict`.
+- The number of samples in each split of the generated `DatasetDict`.
+- The list of downloaded files.
+- The SHA256 checksums of the downloaded files (disabled by default).
+======================================================================
+transformers/chat_templating_multimodal.md#1497 | transformers/chat_templating_multimodal.md | Multimodal chat templates > Video inputs > Example: Passing decoded video objects
+```python
+import numpy as np
+
+video_object1 = np.random.randint(0, 255, size=(16, 224, 224, 3), dtype=np.uint8),
+
+messages = [
+    {
+        "role": "system",
+        "content": [{"type": "text", "text": "You are a friendly chatbot who always responds in the style of a pirate"}],
+    },
+    {
+        "role": "user",
+        "content": [
+            {"type": "video", "video": video_object1},
+            {"type": "text", "text": "What do you see in this video?"}
+        ],
+    },
+]
+```
+
+You can al
+======================================================================
+transformers/processors.md#2387 | transformers/processors.md | Processors > Save and load a processor
+[`~ProcessorMixin.save_pretrained`] writes the processor's configuration to a single `processor_config.json` file. The tokenizer and chat template are saved in their own files.
+
+```py
+from transformers import AutoProcessor
+
+processor = AutoProcessor.from_pretrained("llava-hf/llava-onevision-qwen2-0.5b-ov-hf")
+processor.save_pretrained("./llava-onevision")
+```
+
+```text
+llava-onevision/
+├── chat_template.jinja
+├── processor_config.json
+├── tokenizer.json
+└── tokenizer_config.json
+```
+
+Every sub-pr
+======================================================================
+accelerate/usage_guides/deepspeed_multiple_model.md#237 | accelerate/usage_guides/deepspeed_multiple_model.md | Using multiple models with DeepSpeed > Knowledge distillation > Student model
+By default, Accelerate sets the first item in the `dict` as the default or enabled plugin (`"student"` plugin). Verify this by using the [`utils.deepspeed.get_active_deepspeed_plugin`] function to see which plugin is enabled.
+
+```python
+active_plugin = get_active_deepspeed_plugin(accelerator.state)
+assert active_plugin is deepspeed_plugins["student"]
+```
+
+[`AcceleratorState`] also keeps the active DeepSpeed plugin saved in `state.deepspeed_plugin`.
+
+```python
+assert active_plugin is accelerator.
+======================================================================
+trl/rapidfire_integration.md#3726 | trl/rapidfire_integration.md | RapidFire AI Integration > Additional Resources
+- **Colab Notebook**: [RapidFire AI in Google Colab](http://tinyurl.com/rapidfireai-colab)
+- **Documentation**: [oss-docs.rapidfire.ai](https://oss-docs.rapidfire.ai)
+- **GitHub**: [RapidFireAI/rapidfireai](https://github.com/RapidFireAI/rapidfireai)
+- **PyPI**: [pypi.org/project/rapidfireai](https://pypi.org/project/rapidfireai/)
+- **Discord**: [Join our Discord](https://discord.gg/6vSTtncKNN)
+- **Tutorial Notebooks**: [GitHub Repository](https://github.com/RapidFireAI/rapidfireai/tree/main/tut
+======================================================================
+transformers/main_classes/model.md#2078 | transformers/main_classes/model.md | Models > PreTrainedModel
+- push_to_hub
+    - all
+
+Custom models should also include a `_supports_assign_param_buffer`, which determines if superfast init can apply
+on the particular model. Signs that your model needs this are if `test_save_and_load_from_pretrained` fails. If so,
+set this to `False`.
+======================================================================
+peft/developer_guides/contributing.md#879 | peft/developer_guides/contributing.md | Contribute to PEFT > Installation
+Follow these steps to start contributing:
+
+1. Fork the [repository](https://github.com/huggingface/peft) by clicking on the 'Fork' button on the repository's page. This creates a copy of the code under your GitHub user account.
+
+2. Clone your fork to your local disk, and add the base repository as a remote. The following command assumes you have your public SSH key uploaded to GitHub. See the following guide for more [information](https://docs.github.com/en/repositories/creating-and-managing-rep
+======================================================================
+accelerate/concept_guides/training_tpu.md#153 | accelerate/concept_guides/training_tpu.md | Training on TPUs > Mixed Precision and Global Variables
+As mentioned in the [mixed precision section of the migration tutorial](../basic_tutorials/migration#mixed-precision), Accelerate supports fp16 and bf16, both of which can be used on TPUs.
+That being said, ideally `bf16` should be utilized as it is extremely efficient to use.
+
+There are two "layers" when using `bf16` and Accelerate on TPUs, at the base level and at the operation level.
+
+At the base level, this is enabled when passing `mixed_precision="bf16"` to `Accelerator`, such as:
+
+```python
+======================================================================
+accelerate/usage_guides/tracking.md#352 | accelerate/usage_guides/tracking.md | Experiment trackers > Accessing the internal tracker
+If some custom interactions with a tracker might be wanted directly, you can quickly access one using the
+[`Accelerator.get_tracker`] method. Just pass in the string corresponding to a tracker's `.name` attribute
+and it will return that tracker on the main process.
+
+This example shows doing so with wandb:
+
+```python
+wandb_tracker = accelerator.get_tracker("wandb")
+```
+
+From there you can interact with `wandb`'s `run` object like normal:
+
+```python
+wandb_tracker.log_artifact(some_artifact_to_log)
+======================================================================
+transformers/fsdp.md#1776 | transformers/fsdp.md | FSDP2 > Configure FSDP
+These fields control how FSDP2 wraps, shards, and loads the model. `reshard_after_forward` and `auto_wrap_policy` are covered in [Sharding strategies](#sharding-strategies).
+
+- `cpu_offload` offloads parameters and gradients to CPU when they aren't in use to save GPU memory.
+
+- `transformer_layer_cls_to_wrap` defines the transformer layer to wrap into an FSDP unit when `auto_wrap_policy` is `"TRANSFORMER_BASED_WRAP"`. Each unit manages its own gather and scatter ops. Only the current unit's para
+======================================================================
+transformers/exporters.md#1712 | transformers/exporters.md | Exporters > Export a model
+All exporters share the same interface. Create an exporter with a config, and call [`~exporters.HfExporter.export`].
+
+Switch between runtimes by swapping the exporter class.
+
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers.exporters import DynamoExporter, DynamoConfig
+
+model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-0.6B")
+tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen3-0.6B")
+inputs = tokenizer("Hello, world!", return_tensors="pt")
+
+export
+======================================================================
+accelerate/usage_guides/low_precision_training.md#286 | accelerate/usage_guides/low_precision_training.md | Low Precision Training Methods > Example Zoo
+We have examples showcasing training with FP8 both with accelerate and its underlying implementation available in the accelerate repo.
+Currently we support scripts showcasing:
+
+* Single GPU
+* Distributed Data Parallelism (Multi-GPU)
+* Fully Sharded Data Parallelism
+* DeepSpeed ZeRO 1 through 3
+
+Find out more [here](https://github.com/huggingface/accelerate/tree/main/benchmarks/fp8)
+======================================================================
+peft/guides/peft_integrations.md#985 | peft/guides/peft_integrations.md | PEFT integrations
+PEFT's practical benefits extends to other Hugging Face libraries like [Diffusers](https://hf.co/docs/diffusers) and [Transformers](https://hf.co/docs/transformers). One of the main benefits of PEFT is that an adapter file generated by a PEFT method is a lot smaller than the original model, which makes it super easy to manage and use multiple adapters. You can use one pretrained base model for multiple tasks by simply loading a new adapter finetuned for the task you're solving. Or you can combin
+======================================================================
+datasets/about_dataset_features.md#371 | datasets/about_dataset_features.md | Dataset features > Audio feature
+With `decode=False`, the [`Audio`] type simply gives you the path or the bytes of the audio file, without decoding it into an torchcodec `AudioDecoder` object,
+
+```py
+>>> dataset = load_dataset("PolyAI/minds14", "en-US", split="train").cast_column("audio", Audio(decode=False))
+>>> dataset[0]
+{'audio': {'bytes': None,
+  'path': '/root/.cache/huggingface/datasets/downloads/extracted/f14948e0e84be638dd7943ac36518a4cf3324e8b7aa331c5ab11541518e9368c/en-US~JOINT_ACCOUNT/602ba55abb1e6d0fbce92065.wav'},
+======================================================================
+transformers/nvidia_gpu.md#2257 | transformers/nvidia_gpu.md | NVIDIA GPU > Installation
+Install the CUDA drivers for your GPU, then install PyTorch and Transformers. See the [installation guide](./installation) for NVIDIA Spark (ARM64) devices, which need PyTorch from NVIDIA's package index.
+
+```bash
+pip install "transformers[torch]"
+```
+
+Check that PyTorch can see the GPUs.
+
+```py
+import torch
+
+print(torch.cuda.is_available(), torch.cuda.device_count())
+```
+
+It prints `True` and the number of GPUs, for example `True 4`.
+======================================================================
+transformers/exporters_extend.md#1738 | transformers/exporters_extend.md | Extending the exporters
+`torch.export` traces the model into a graph, later stages transform
+that graph, and a final stage lowers or emits it for the target runtime. Most models pass through
+untouched. When there's a PyTorch pattern the backend can't handle, the exporter applies a
+small workaround at that stage rather than editing the model.
+
+Add a workaround by writing one function and registering it with a decorator. Each workaround belongs at the lowest stage that can express it cleanly.
+======================================================================
+accelerate/usage_guides/distributed_inference.md#242 | accelerate/usage_guides/distributed_inference.md | Distributed inference > Sending chunks of a batch automatically to each loaded model
+This is the most memory-intensive solution, as it requires each GPU to keep a full copy of the model in memory at a given time.
+
+Normally when doing this, users send the model to a specific device to load it from the CPU, and then move each prompt to a different device.
+
+A basic pipeline using the `diffusers` library might look something like so:
+
+```python
+import torch
+import torch.distributed as dist
+from diffusers import DiffusionPipeline
+
+pipe = DiffusionPipeline.from_pretrained("runwayml/st
+======================================================================
+trl/grpo_trainer.md#3386 | trl/grpo_trainer.md | GRPO Trainer > Customization > Using a custom reward function > Example 5: Asynchronous reward functions
+Custom reward functions can also be defined as `async def` coroutines. This is useful if your reward depends on slow I/O (for example, calling a remote service). When you pass multiple async reward functions, [`GRPOTrainer`] executes them concurrently so their latency overlaps.
+
+Below is a minimal example of an async reward function that simulates an I/O-bound operation:
+
+```python
+import asyncio
+
+async def async_reward_func(prompts, completions, **kwargs):
+    # Simulate an I/O-bound call (e.g.
+======================================================================
+transformers/perf_infer_gpu_multi.md#2316 | transformers/perf_infer_gpu_multi.md | Tensor parallelism for inference > Design implementation > DeviceMesh
+`DeviceMesh` creates a multi-dimensional grid of devices that communicate together. Different parallelization strategies require different communication patterns. Create a `DeviceMesh` with multiple sub-meshes to handle these patterns.
+
+```python
+import torch
+from torch.distributed.device_mesh import init_device_mesh
+
+# Create a 1D mesh of 4 accelerators
+device_type = torch.accelerator.current_accelerator().type
+device_mesh = init_device_mesh(device_type, (4,), mesh_dim_names=["tp"])
+```
+
+Most `
+======================================================================
+datasets/image_process.md#507 | datasets/image_process.md | Process image data > Map
+- [`batch_size`](./package_reference/main_classes#datasets.DatasetDict.map.batch_size) determines the number of examples that are processed in one call to the transform function.
+- [`writer_batch_size`](./package_reference/main_classes#datasets.DatasetDict.map.writer_batch_size) determines the number of processed examples that are kept in memory before they are stored away.
+
+Both parameter values default to 1000, which can be expensive if you are storing images. Lower these values to use less me
+======================================================================
+peft/developer_guides/low_level_api.md#914 | peft/developer_guides/low_level_api.md | Adapter injection > Setting and loading base weights
+The main use case for this is loading the base weights *after* the model has already been wrapped by PEFT. For example, FSDP training setups such as TorchTitan initialize the model on the meta device, apply PEFT, and shard the result. Real memory only exists after sharding, so the checkpoint, whose keys use the original names, has to be loaded into the already-wrapped model. Note that [`get_base_model_state_dict`] returns the live tensors of the model, not copies.
+======================================================================
+transformers/serve-cli/serving.md#2583 | transformers/serve-cli/serving.md | Serve CLI > v1/chat/completions > Video-based completions
+The [OpenAI](https://platform.openai.com/docs/quickstart) client returns a printed string.
+
+```
+The video captures a live music performance at a music festival or a large concert. There are several musicians on stage, including a central figure playing an acoustic guitar and singing. The foreground is filled with the backs of the audience, indicating a large crowd watching the show. The stage is dramatically lit with bright spotlights and blue and white stage lighting, with haze and smoke creati
+======================================================================
+transformers/serve-cli/serving.md#2569 | transformers/serve-cli/serving.md | Serve CLI > v1/chat/completions > Text-based completions
+```python
+from huggingface_hub import InferenceClient
+
+messages = [{"role": "user", "content": "What is the Transformers library known for?"}]
+client = InferenceClient("http://localhost:8000")
+
+result = client.chat_completion(messages, model="Qwen/Qwen2.5-0.5B-Instruct", max_tokens=256)
+print(result.choices[0].message.content)
+```
+
+The [`~huggingface_hub.InferenceClient`] returns a printed string.
+
+```shell
+The Transformers library is primarily known for its ability to create and manipulate larg
+======================================================================
+accelerate/usage_guides/fsdp.md#253 | accelerate/usage_guides/fsdp.md | Fully Sharded Data Parallel > Saving and loading
+The new recommended way of checkpointing when using FSDP models is to use `SHARDED_STATE_DICT` as `StateDictType` when setting up the accelerate config.
+Below is the code snippet to save using `save_state` utility of accelerate.
+
+```py
+accelerator.save_state("ckpt")
+```
+
+Inspect the checkpoint folder to see model and optimizer as shards per process:
+
+```
+ls ckpt
+# optimizer_0  pytorch_model_0  random_states_0.pkl  random_states_1.pkl  scheduler.bin
+
+cd ckpt
+
+ls optimizer_0
+# __0_0.distcp  __1_0.
+======================================================================
+transformers/pipeline_tutorial.md#2363 | transformers/pipeline_tutorial.md | Pipeline > Large models
+[Accelerate](https://hf.co/docs/accelerate/index) enables a couple of optimizations for running large models with [`Pipeline`]. Make sure Accelerate is installed first.
+
+```py
+!pip install -U accelerate
+```
+
+The `device_map="auto"` setting is useful for automatically distributing the model across the fastest devices (GPUs) first before dispatching to other slower devices if available (CPU, hard drive).
+
+[`Pipeline`] supports half-precision weights (torch.float16), which can be significantly fast
+======================================================================
+transformers/quantization/auto_round.md#2398 | transformers/quantization/auto_round.md | AutoRound > Quantization and Serialization (offline) > AutoRoundBest recipe
+This setting provides the best accuracy in most scenarios but is 4–5× slower than the standard AutoRound recipe. It is especially recommended for 2-bit quantization and is a good choice if sufficient resources are available.
+
+```python
+from auto_round import AutoRound
+
+model_name = "Qwen/Qwen3-0.6B"
+ar = AutoRound(
+    model_name,
+    scheme="W4A16",
+    nsamples=512,
+    iters=1000,
+)
+
+output_dir = "./tmp_autoround"
+ar.quantize_and_save(output_dir, format='auto_round')
+```
+======================================================================
+transformers/conversations.md#1624 | transformers/conversations.md | Chat basics > Performance and memory usage
+Transformers load models in full `float32` precision by default, and for a 8B model, this requires ~32GB of memory! Use the `torch_dtype="auto"` argument, which generally uses `bfloat16` for models that were trained with it, to reduce your memory usage.
+
+> [!TIP]
+> Refer to the [Quantization](./quantization/overview) docs for more information about the different quantization backends available.
+
+To lower memory usage even lower, you can quantize the model to 8-bit or 4-bit with [bitsandbytes](ht
+======================================================================
+accelerate/usage_guides/ddp_comm_hook.md#203 | accelerate/usage_guides/ddp_comm_hook.md | DDP Communication Hooks
+Distributed Data Parallel (DDP) communication hooks provide a generic interface to control how gradients are communicated across workers by overriding the vanilla allreduce in `DistributedDataParallel`. A few built-in communication hooks are provided, and users can easily apply any of these hooks to optimize communication.
+
+- **FP16 Compression Hook**: Compresses gradients by casting them to half-precision floating-point format (`torch.float16`), reducing communication overhead.
+- **BF16 Compres
+======================================================================
+peft/developer_guides/custom_models.md#905 | peft/developer_guides/custom_models.md | Custom models > Unsupported module types > Experimental support for dynamic dispatch of custom modules in LoRA
+> [!TIP]
+> When you call [`get_peft_model`], you will see a warning because PEFT does not recognize the targeted module type. In this case, you can ignore this warning.
+
+By supplying a custom mapping, PEFT first checks the base model's layers against the custom mapping and dispatches to the custom LoRA layer type if there is a match. If there is no match, PEFT checks the built-in LoRA layer types for a match.
+
+Therefore, this feature can also be used to override existing dispatch logic, e.g. if 
+======================================================================
+accelerate/usage_guides/big_modeling.md#190 | accelerate/usage_guides/big_modeling.md | Big Model Inference > Accelerate
+A typical workflow for loading a PyTorch model is shown below. `ModelClass` is a model that exceeds the GPU memory of your device (mps or cuda or xpu).
+
+```py
+import torch
+
+my_model = ModelClass(...)
+state_dict = torch.load(checkpoint_file)
+my_model.load_state_dict(state_dict)
+```
+
+With Big Model Inference, the first step is to init an empty skeleton of the model with the `init_empty_weights` context manager. This doesn't require any memory because `my_model` is "parameterless".
+
+```py
+from acce
+======================================================================
+transformers/optimizers.md#2280 | transformers/optimizers.md | Optimizers and schedulers > Optimizer integrations
+> [!TIP]
+> If you're training with large batch sizes or still observing loss spikes, try setting `beta_2` between 0.95 and 0.99.
+
+```diff
+args = TrainingArguments(
++   optim="stable_adamw",
+    learning_rate=2e-6,
+    ...  # remaining args from the TrainingArguments intro config
+)
+```
+
+```bash
+pip install galore-torch trl
+```
+
+[Gradient Low-Rank Projection (GaLore)](https://hf.co/papers/2403.03507) reduces memory for training LLMs. Unlike low-rank adaptation methods like [LoRA](https://hf.co/pap
+======================================================================
+trl/online_dpo_trainer.md#3516 | trl/online_dpo_trainer.md | Online DPO Trainer > Logged metrics
+While training and evaluating, we record the following metrics. Here is an example [tracked run at Weights and Biases](https://wandb.ai/huggingface/trl/runs/w4apmsi9)
+
+* `objective/kl`: The mean Kullback-Leibler (KL) divergence between the current model and reference model.
+* `objective/entropy`: The mean entropy of the model, indicating the randomness of the actions chosen by the model.
+* `objective/non_score_reward`: The mean reward from non-score-related sources, basically `beta * kl.sum(1)`,
