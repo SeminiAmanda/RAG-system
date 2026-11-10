@@ -21,3 +21,4 @@ __pycache__/
 data/
 eval/results/*_misses.json
 eval/results/*_weak.json
+logs/

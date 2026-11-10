@@ -19,7 +19,7 @@ If the passages contain nothing relevant to the question, reply exactly:
 I don't know based on the provided documents.
 Do not add claims, recommendations or code that are not in the passages. Be concise."""
 
-SYSTEM = SYSTEM_V2 if os.getenv("PROMPT_VERSION") == "2" else SYSTEM_V1
+SYSTEM = SYSTEM_V1 if os.getenv("PROMPT_VERSION") == "1" else SYSTEM_V2
 
 def build_prompt(question, passages):
     ctx = "\n\n".join(
