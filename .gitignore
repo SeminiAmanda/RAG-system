@@ -19,3 +19,5 @@ __pycache__/
 
 # Generated data
 data/
+eval/results/*_misses.json
+eval/results/*_weak.json
