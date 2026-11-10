@@ -8,8 +8,7 @@ QUESTIONS_PATH = Path("eval/questions.jsonl")
 
 # Keep the index OUTSIDE OneDrive: Chroma uses SQLite, which can misbehave
 # in synced folders. This puts it in ~/.rag-ds-ai/index
-INDEX_DIR = Path.home() / ".rag-ds-ai" / "index"
-
+INDEX_DIR = Path(os.getenv("INDEX_DIR", str(Path.home() / ".rag-ds-ai" / "index")))
 EMBED_MODEL = os.getenv("EMBED_MODEL", "BAAI/bge-small-en-v1.5")
 
 # bge models work better when short queries get this prefix (documents get none)

@@ -20,19 +20,6 @@ from generate import generate
 from retrieve import Retriever
 
 REFUSAL = "i don't know based on the provided documents"
-CITATION_RE = re.compile(r"\[(\d+(?:\s*,\s*\d+)*)\]")
-
-
-def extract_citations(answer: str):
-    """Citation numbers like [1], [2][3] or [1, 3]. Code is stripped first so that
-    indexing such as dataset[0] is not mistaken for a citation."""
-    text = re.sub(r"```.*?```", " ", answer, flags=re.S)   # fenced code blocks
-    text = re.sub(r"`[^`\n]*`", " ", text)                 # inline code
-    nums = set()
-    for group in CITATION_RE.findall(text):
-        nums.update(int(n) for n in re.split(r"\s*,\s*", group))
-    return sorted(nums)
-
 def read_jsonl(path):
     with open(path, encoding="utf-8") as f:
         return [json.loads(line) for line in f if line.strip()]

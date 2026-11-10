@@ -97,6 +97,9 @@ if question.strip():
 
     gated = (not passages) or top1 < min_score
     t_generate = 0.0
+    answer = None
+    llm_error = None
+    llm_error_detail = ""
     if gated:
         answer = REFUSAL
     else:
@@ -106,11 +109,14 @@ if question.strip():
                 answer = cached_generate(question, passages)
             t_generate = time.time() - t1
         except KeyError as e:
-            st.error(f"Missing setting {e}. Set the LLM_* environment variables and restart the app.")
-            st.stop()
+            llm_error = f"Missing setting {e}. Set the LLM_* environment variables and restart the app."
+            llm_error_detail = repr(e)
         except Exception as e:  # network error, rate limit, bad key ...
-            st.error(f"The language model call failed: {e}")
-            st.stop()
+            llm_error = (
+                f"The language model call failed ({type(e).__name__}). On the free tier this is "
+                "usually a rate limit: try again in a minute."
+            )
+            llm_error_detail = str(e)
 
     st.subheader("Answer")
     if gated:
@@ -118,13 +124,18 @@ if question.strip():
             f"The language model was not called: the best passage scored {top1:.2f}, "
             f"below your threshold of {min_score:.1f}."
         )
-    st.markdown(answer)
+    if llm_error:
+        st.warning(llm_error + " The retrieved passages are shown below.")
+        with st.expander("Error details"):
+            st.code(llm_error_detail)
+    else:
+        st.markdown(answer)
     st.caption(
         f"Retrieval {t_retrieve * 1000:.0f} ms · generation {t_generate:.1f} s · "
         f"best reranker score {top1:.2f}"
     )
 
-    cited = set(extract_citations(answer))
+    cited = set(extract_citations(answer)) if answer else set()
     st.subheader("Sources")
     if not passages:
         st.write("No passages found.")
@@ -142,7 +153,9 @@ if question.strip():
         "question": question,
         "library": library,
         "gated": gated,
-        "refused": "i don't know based on the provided documents" in answer.lower().replace("’", "'"),
+        "llm_error": bool(llm_error),
+        "refused": bool(answer) and "i don't know based on the provided documents"
+        in answer.lower().replace("’", "'"),
         "top1_score": round(top1, 2),
         "sources": [p["source"] for p in passages],
         "retrieval_ms": round(t_retrieve * 1000),
