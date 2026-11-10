@@ -1,0 +1,28 @@
+[
+  {
+    "id": "q26",
+    "question": "Which mixed precision format is recommended for TPU training with Accelerate, and how do I enable it?",
+    "gold": [
+      "accelerate/concept_guides/training_tpu.md"
+    ],
+    "rank": 2,
+    "got": [
+      "accelerate/basic_tutorials/migration.md",
+      "accelerate/concept_guides/training_tpu.md",
+      "accelerate/basic_tutorials/install.md"
+    ]
+  },
+  {
+    "id": "q36",
+    "question": "What are the default values of batch_size and writer_batch_size for map on image datasets, and why would I lower them?",
+    "gold": [
+      "datasets/image_process.md"
+    ],
+    "rank": 3,
+    "got": [
+      "datasets/stream.md",
+      "datasets/process.md",
+      "datasets/image_process.md"
+    ]
+  }
+]

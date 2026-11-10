@@ -1,0 +1,120 @@
+[
+  {
+    "id": "h01",
+    "question": "TRF058",
+    "gold": [
+      "transformers/modeling_rules.md"
+    ],
+    "rank": 3,
+    "got": [
+      "trl/paper_index.md",
+      "transformers/community_integrations/trl.md",
+      "transformers/modeling_rules.md"
+    ]
+  },
+  {
+    "id": "h02",
+    "question": "weight_sync_steps",
+    "gold": [
+      "trl/async_distillation_trainer.md",
+      "trl/async_grpo_trainer.md"
+    ],
+    "rank": 10,
+    "got": [
+      "accelerate/usage_guides/local_sgd.md",
+      "transformers/weightconverter.md",
+      "accelerate/concept_guides/gradient_synchronization.md"
+    ]
+  },
+  {
+    "id": "h06",
+    "question": "get_base_model_state_dict",
+    "gold": [
+      "peft/developer_guides/low_level_api.md"
+    ],
+    "rank": 2,
+    "got": [
+      "accelerate/usage_guides/fsdp.md",
+      "peft/developer_guides/low_level_api.md",
+      "peft/developer_guides/low_level_api.md"
+    ]
+  },
+  {
+    "id": "h07",
+    "question": "_supports_assign_param_buffer",
+    "gold": [
+      "transformers/main_classes/model.md"
+    ],
+    "rank": 2,
+    "got": [
+      "transformers/modeling_rules.md",
+      "transformers/main_classes/model.md",
+      "transformers/pipeline_tutorial.md"
+    ]
+  },
+  {
+    "id": "h09",
+    "question": "quick way to check that my PyTorch install can use my NVIDIA graphics cards",
+    "gold": [
+      "transformers/nvidia_gpu.md"
+    ],
+    "rank": 2,
+    "got": [
+      "peft/install.md",
+      "transformers/nvidia_gpu.md",
+      "transformers/intel_gpu.md"
+    ]
+  },
+  {
+    "id": "h11",
+    "question": "my training loss keeps spiking with big batches, any optimizer tip?",
+    "gold": [
+      "transformers/optimizers.md"
+    ],
+    "rank": 4,
+    "got": [
+      "transformers/main_classes/pipelines.md",
+      "transformers/troubleshooting.md",
+      "transformers/grad_accumulation.md"
+    ]
+  },
+  {
+    "id": "h12",
+    "question": "can I run several reward functions that call web services at the same time?",
+    "gold": [
+      "trl/grpo_trainer.md"
+    ],
+    "rank": 3,
+    "got": [
+      "trl/rloo_trainer.md",
+      "trl/rloo_trainer.md",
+      "trl/grpo_trainer.md"
+    ]
+  },
+  {
+    "id": "h13",
+    "question": "I built a brand-new model architecture; can I release it for Transformers users without opening a pull request to the library?",
+    "gold": [
+      "transformers/contributing.md"
+    ],
+    "rank": 3,
+    "got": [
+      "transformers/add_new_model.md",
+      "transformers/add_new_model.md",
+      "transformers/contributing.md"
+    ]
+  },
+  {
+    "id": "h20",
+    "question": "which logged metric shows how random my policy's choices are in online DPO?",
+    "gold": [
+      "trl/online_dpo_trainer.md"
+    ],
+    "rank": 5,
+    "got": [
+      "trl/orpo_trainer.md",
+      "trl/cpo_trainer.md",
+      "trl/dpo_trainer.md"
+    ]
+  }
+]

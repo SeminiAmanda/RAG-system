@@ -1,0 +1,68 @@
+[
+  {
+    "id": "h02",
+    "question": "weight_sync_steps",
+    "gold": [
+      "trl/async_distillation_trainer.md",
+      "trl/async_grpo_trainer.md"
+    ],
+    "rank": 5,
+    "got": [
+      "transformers/weightconverter.md",
+      "transformers/modular_transformers.md",
+      "trl/vllm_integration.md"
+    ]
+  },
+  {
+    "id": "h06",
+    "question": "get_base_model_state_dict",
+    "gold": [
+      "peft/developer_guides/low_level_api.md"
+    ],
+    "rank": 2,
+    "got": [
+      "transformers/main_classes/output.md",
+      "peft/developer_guides/low_level_api.md",
+      "accelerate/usage_guides/fsdp.md"
+    ]
+  },
+  {
+    "id": "h09",
+    "question": "quick way to check that my PyTorch install can use my NVIDIA graphics cards",
+    "gold": [
+      "transformers/nvidia_gpu.md"
+    ],
+    "rank": 2,
+    "got": [
+      "peft/install.md",
+      "transformers/nvidia_gpu.md",
+      "transformers/nvidia_gpu.md"
+    ]
+  },
+  {
+    "id": "h15",
+    "question": "how do I lay out 4 accelerators as a grid for splitting a model at inference?",
+    "gold": [
+      "transformers/perf_infer_gpu_multi.md"
+    ],
+    "rank": 4,
+    "got": [
+      "transformers/glossary.md",
+      "accelerate/usage_guides/distributed_inference.md",
+      "transformers/community_integrations/transformers_as_backend.md"
+    ]
+  },
+  {
+    "id": "h20",
+    "question": "which logged metric shows how random my policy's choices are in online DPO?",
+    "gold": [
+      "trl/online_dpo_trainer.md"
+    ],
+    "rank": 4,
+    "got": [
+      "trl/cpo_trainer.md",
+      "trl/orpo_trainer.md",
+      "trl/dpo_trainer.md"
+    ]
+  }
+]

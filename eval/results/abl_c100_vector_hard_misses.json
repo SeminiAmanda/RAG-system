@@ -1,0 +1,38 @@
+[
+  {
+    "id": "h04",
+    "question": "init_empty_weights",
+    "gold": [
+      "accelerate/usage_guides/big_modeling.md"
+    ],
+    "got": [
+      "accelerate/quicktour.md",
+      "accelerate/concept_guides/big_model_inference.md",
+      "accelerate/usage_guides/quantization.md"
+    ]
+  },
+  {
+    "id": "h07",
+    "question": "_supports_assign_param_buffer",
+    "gold": [
+      "transformers/main_classes/model.md"
+    ],
+    "got": [
+      "transformers/modeling_rules.md",
+      "transformers/exporters.md",
+      "transformers/paged_attention.md"
+    ]
+  },
+  {
+    "id": "h11",
+    "question": "my training loss keeps spiking with big batches, any optimizer tip?",
+    "gold": [
+      "transformers/optimizers.md"
+    ],
+    "got": [
+      "peft/accelerate/deepspeed.md",
+      "transformers/troubleshooting.md",
+      "accelerate/basic_tutorials/troubleshooting.md"
+    ]
+  }
+]

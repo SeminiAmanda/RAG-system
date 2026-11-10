@@ -1,0 +1,842 @@
+=== base: BAAI/bge-small-en-v1.5, 200-word chunks, heading=1 ===
+
+Run: abl_base_vector_main
+Questions file: eval/questions.jsonl
+Embedding model: BAAI/bge-small-en-v1.5   heading embedded: True
+Config: mode=vector rerank=False pool=20 max_per_source=None
+Answerable questions: 35   avg latency: 24 ms/query
+
+  hit@1         0.829
+  hit@3         0.971
+  hit@5         0.971
+  hit@10        1.000
+  MRR           0.899
+  section_hit@5 0.943
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 0.830
+Top-1 score, unanswerable : mean 0.691  (n=5)
+
+Misses (correct source not in top 10): 0
+
+Found but not at rank 1: 6
+  q07 (rank 2): What learning rate range is suggested for DeLoRA compared with standard LoRA?
+     gold=['peft/package_reference/delora.md']
+     got =['trl/lora_without_regret.md', 'peft/package_reference/delora.md', 'trl/lora_without_regret.md']
+  q25 (rank 2): When using several models with DeepSpeed in Accelerate, which plugin is enabled by default and how can I verify it?
+     gold=['accelerate/usage_guides/deepspeed_multiple_model.md']
+     got =['accelerate/usage_guides/deepspeed.md', 'accelerate/usage_guides/deepspeed_multiple_model.md', 'accelerate/usage_guides/deepspeed_multiple_model.md']
+  q26 (rank 7): Which mixed precision format is recommended for TPU training with Accelerate, and how do I enable it?
+     gold=['accelerate/concept_guides/training_tpu.md']
+     got =['accelerate/basic_tutorials/migration.md', 'accelerate/usage_guides/low_precision_training.md', 'trl/speeding_up_training.md']
+  q28 (rank 3): What does the cpu_offload option do when configuring FSDP2 in Transformers?
+     gold=['transformers/fsdp.md']
+     got =['accelerate/concept_guides/fsdp_and_deepspeed.md', 'accelerate/concept_guides/fsdp_and_deepspeed.md', 'transformers/fsdp.md']
+  q31 (rank 2): Why is it easy to manage multiple tasks with one base model using PEFT adapters?
+     gold=['peft/guides/peft_integrations.md']
+     got =['peft/developer_guides/troubleshooting.md', 'peft/guides/peft_integrations.md', 'peft/quicktour.md']
+  q34 (rank 2): Why is splitting a batch across GPUs by loading a full model copy on each one memory-intensive?
+     gold=['accelerate/usage_guides/distributed_inference.md']
+     got =['accelerate/concept_guides/big_model_inference.md', 'accelerate/usage_guides/distributed_inference.md', 'trl/long_context_training.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_base_vector_main_misses.json, abl_base_vector_main_weak.json
+
+Run: abl_base_hybrid_rerank_main
+Questions file: eval/questions.jsonl
+Embedding model: BAAI/bge-small-en-v1.5   heading embedded: True
+Config: mode=hybrid rerank=True pool=20 max_per_source=None
+Answerable questions: 35   avg latency: 585 ms/query
+
+  hit@1         0.943
+  hit@3         1.000
+  hit@5         1.000
+  hit@10        1.000
+  MRR           0.967
+  section_hit@5 1.000
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 6.453
+Top-1 score, unanswerable : mean -4.170  (n=5)
+
+Misses (correct source not in top 10): 0
+
+Found but not at rank 1: 2
+  q26 (rank 2): Which mixed precision format is recommended for TPU training with Accelerate, and how do I enable it?
+     gold=['accelerate/concept_guides/training_tpu.md']
+     got =['accelerate/basic_tutorials/migration.md', 'accelerate/concept_guides/training_tpu.md', 'trl/customization.md']
+  q34 (rank 3): Why is splitting a batch across GPUs by loading a full model copy on each one memory-intensive?
+     gold=['accelerate/usage_guides/distributed_inference.md']
+     got =['transformers/perf_train_gpu_many.md', 'accelerate/concept_guides/big_model_inference.md', 'accelerate/usage_guides/distributed_inference.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_base_hybrid_rerank_main_misses.json, abl_base_hybrid_rerank_main_weak.json
+
+Run: abl_base_vector_hard
+Questions file: eval/questions_hard_v2.jsonl
+Embedding model: BAAI/bge-small-en-v1.5   heading embedded: True
+Config: mode=vector rerank=False pool=20 max_per_source=None
+Answerable questions: 20   avg latency: 19 ms/query
+
+  hit@1         0.500
+  hit@3         0.850
+  hit@5         0.850
+  hit@10        0.950
+  MRR           0.669
+  section_hit@5 0.650
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 0.777
+
+Misses (correct source not in top 10): 1
+  h04: init_empty_weights
+     gold=['accelerate/usage_guides/big_modeling.md']
+     got =['accelerate/quicktour.md', 'accelerate/concept_guides/big_model_inference.md', 'transformers/modeling_rules.md']
+
+Found but not at rank 1: 9
+  h02 (rank 2): weight_sync_steps
+     gold=['trl/async_distillation_trainer.md', 'trl/async_grpo_trainer.md']
+     got =['transformers/weightconverter.md', 'trl/async_distillation_trainer.md', 'accelerate/usage_guides/local_sgd.md']
+  h06 (rank 2): get_base_model_state_dict
+     gold=['peft/developer_guides/low_level_api.md']
+     got =['accelerate/usage_guides/fsdp.md', 'peft/developer_guides/low_level_api.md', 'transformers/modeling_rules.md']
+  h07 (rank 2): _supports_assign_param_buffer
+     gold=['transformers/main_classes/model.md']
+     got =['transformers/modeling_rules.md', 'transformers/main_classes/model.md', 'transformers/exporters.md']
+  h12 (rank 3): can I run several reward functions that call web services at the same time?
+     gold=['trl/grpo_trainer.md']
+     got =['trl/rloo_trainer.md', 'trl/rloo_trainer.md', 'trl/grpo_trainer.md']
+  h13 (rank 3): I built a brand-new model architecture; can I release it for Transformers users without opening a pull request to the library?
+     gold=['transformers/contributing.md']
+     got =['transformers/add_new_model.md', 'transformers/add_new_model.md', 'transformers/contributing.md']
+  h14 (rank 2): which gradient compression options cut communication cost across GPUs?
+     gold=['accelerate/usage_guides/ddp_comm_hook.md']
+     got =['accelerate/concept_guides/gradient_synchronization.md', 'accelerate/usage_guides/ddp_comm_hook.md', 'transformers/main_classes/deepspeed.md']
+  h15 (rank 9): how do I lay out 4 accelerators as a grid for splitting a model at inference?
+     gold=['transformers/perf_infer_gpu_multi.md']
+     got =['accelerate/usage_guides/distributed_inference.md', 'accelerate/usage_guides/distributed_inference.md', 'accelerate/usage_guides/big_modeling.md']
+  h16 (rank 10): how do I talk to my local transformers server using the Hugging Face client?
+     gold=['transformers/serve-cli/serving.md']
+     got =['transformers/conversations.md', 'transformers/quicktour.md', 'transformers/model_sharing.md']
+  h20 (rank 2): which logged metric shows how random my policy's choices are in online DPO?
+     gold=['trl/online_dpo_trainer.md']
+     got =['trl/dpo_trainer.md', 'trl/online_dpo_trainer.md', 'trl/orpo_trainer.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_base_vector_hard_misses.json, abl_base_vector_hard_weak.json
+
+Run: abl_base_hybrid_rerank_hard
+Questions file: eval/questions_hard_v2.jsonl
+Embedding model: BAAI/bge-small-en-v1.5   heading embedded: True
+Config: mode=hybrid rerank=True pool=20 max_per_source=None
+Answerable questions: 20   avg latency: 589 ms/query
+
+  hit@1         0.800
+  hit@3         0.900
+  hit@5         0.950
+  hit@10        1.000
+  MRR           0.863
+  section_hit@5 0.900
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 4.828
+
+Misses (correct source not in top 10): 0
+
+Found but not at rank 1: 4
+  h04 (rank 6): init_empty_weights
+     gold=['accelerate/usage_guides/big_modeling.md']
+     got =['accelerate/quicktour.md', 'accelerate/concept_guides/big_model_inference.md', 'accelerate/quicktour.md']
+  h14 (rank 4): which gradient compression options cut communication cost across GPUs?
+     gold=['accelerate/usage_guides/ddp_comm_hook.md']
+     got =['transformers/deepspeed.md', 'transformers/fsdp.md', 'transformers/perf_train_gpu_many.md']
+  h15 (rank 3): how do I lay out 4 accelerators as a grid for splitting a model at inference?
+     gold=['transformers/perf_infer_gpu_multi.md']
+     got =['accelerate/usage_guides/distributed_inference.md', 'accelerate/usage_guides/big_modeling.md', 'transformers/perf_infer_gpu_multi.md']
+  h16 (rank 2): how do I talk to my local transformers server using the Hugging Face client?
+     gold=['transformers/serve-cli/serving.md']
+     got =['transformers/serve-cli/tiny_agents.md', 'transformers/serve-cli/serving.md', 'transformers/tasks/object_detection.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_base_hybrid_rerank_hard_misses.json, abl_base_hybrid_rerank_hard_weak.json
+Files processed : 474
+Chunks written  : 5936
+Tiny chunks dropped: 844
+Words per chunk : min=30  median=78  max=201
+Output          : /Users/amandasewwandi/Library/CloudStorage/OneDrive-sci.sjp.ac.lk/rag-ds-ai/data/processed/chunks_c100.jsonl
+=== c100: BAAI/bge-small-en-v1.5, 100-word chunks, heading=1 ===
+Loaded 5936 chunks
+Model: BAAI/bge-small-en-v1.5 (max_seq_length=512)
+Embedded in 157s, shape=(5936, 384)
+Indexed 5936 chunks into 'chunks_BAAI_bge-small-en-v1.5_h_c100' at /Users/amandasewwandi/.rag-ds-ai/index
+
+Run: abl_c100_vector_main
+Questions file: eval/questions.jsonl
+Embedding model: BAAI/bge-small-en-v1.5   heading embedded: True
+Config: mode=vector rerank=False pool=20 max_per_source=None
+Answerable questions: 35   avg latency: 24 ms/query
+
+  hit@1         0.800
+  hit@3         0.943
+  hit@5         0.971
+  hit@10        1.000
+  MRR           0.872
+  section_hit@5 0.971
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 0.834
+Top-1 score, unanswerable : mean 0.697  (n=5)
+
+Misses (correct source not in top 10): 0
+
+Found but not at rank 1: 7
+  q07 (rank 3): What learning rate range is suggested for DeLoRA compared with standard LoRA?
+     gold=['peft/package_reference/delora.md']
+     got =['trl/lora_without_regret.md', 'peft/package_reference/lora_variant_monteclora.md', 'peft/package_reference/delora.md']
+  q25 (rank 2): When using several models with DeepSpeed in Accelerate, which plugin is enabled by default and how can I verify it?
+     gold=['accelerate/usage_guides/deepspeed_multiple_model.md']
+     got =['accelerate/usage_guides/deepspeed.md', 'accelerate/usage_guides/deepspeed_multiple_model.md', 'accelerate/usage_guides/deepspeed_multiple_model.md']
+  q26 (rank 6): Which mixed precision format is recommended for TPU training with Accelerate, and how do I enable it?
+     gold=['accelerate/concept_guides/training_tpu.md']
+     got =['accelerate/basic_tutorials/migration.md', 'accelerate/basic_tutorials/migration.md', 'accelerate/package_reference/cli.md']
+  q28 (rank 3): What does the cpu_offload option do when configuring FSDP2 in Transformers?
+     gold=['transformers/fsdp.md']
+     got =['accelerate/concept_guides/fsdp_and_deepspeed.md', 'accelerate/concept_guides/fsdp_and_deepspeed.md', 'transformers/fsdp.md']
+  q31 (rank 2): Why is it easy to manage multiple tasks with one base model using PEFT adapters?
+     gold=['peft/guides/peft_integrations.md']
+     got =['peft/developer_guides/troubleshooting.md', 'peft/guides/peft_integrations.md', 'peft/developer_guides/troubleshooting.md']
+  q34 (rank 2): Why is splitting a batch across GPUs by loading a full model copy on each one memory-intensive?
+     gold=['accelerate/usage_guides/distributed_inference.md']
+     got =['accelerate/concept_guides/big_model_inference.md', 'accelerate/usage_guides/distributed_inference.md', 'accelerate/concept_guides/big_model_inference.md']
+  q36 (rank 5): What are the default values of batch_size and writer_batch_size for map on image datasets, and why would I lower them?
+     gold=['datasets/image_process.md']
+     got =['datasets/process.md', 'datasets/about_map_batch.md', 'datasets/stream.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_c100_vector_main_misses.json, abl_c100_vector_main_weak.json
+
+Run: abl_c100_hybrid_rerank_main
+Questions file: eval/questions.jsonl
+Embedding model: BAAI/bge-small-en-v1.5   heading embedded: True
+Config: mode=hybrid rerank=True pool=20 max_per_source=None
+Answerable questions: 35   avg latency: 597 ms/query
+
+  hit@1         0.971
+  hit@3         0.971
+  hit@5         1.000
+  hit@10        1.000
+  MRR           0.977
+  section_hit@5 1.000
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 6.636
+Top-1 score, unanswerable : mean -4.114  (n=5)
+
+Misses (correct source not in top 10): 0
+
+Found but not at rank 1: 1
+  q36 (rank 5): What are the default values of batch_size and writer_batch_size for map on image datasets, and why would I lower them?
+     gold=['datasets/image_process.md']
+     got =['datasets/stream.md', 'datasets/process.md', 'datasets/tsfile_load.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_c100_hybrid_rerank_main_misses.json, abl_c100_hybrid_rerank_main_weak.json
+
+Run: abl_c100_vector_hard
+Questions file: eval/questions_hard_v2.jsonl
+Embedding model: BAAI/bge-small-en-v1.5   heading embedded: True
+Config: mode=vector rerank=False pool=20 max_per_source=None
+Answerable questions: 20   avg latency: 23 ms/query
+
+  hit@1         0.550
+  hit@3         0.800
+  hit@5         0.850
+  hit@10        0.850
+  MRR           0.668
+  section_hit@5 0.700
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 0.780
+
+Misses (correct source not in top 10): 3
+  h04: init_empty_weights
+     gold=['accelerate/usage_guides/big_modeling.md']
+     got =['accelerate/quicktour.md', 'accelerate/concept_guides/big_model_inference.md', 'accelerate/usage_guides/quantization.md']
+  h07: _supports_assign_param_buffer
+     gold=['transformers/main_classes/model.md']
+     got =['transformers/modeling_rules.md', 'transformers/exporters.md', 'transformers/paged_attention.md']
+  h11: my training loss keeps spiking with big batches, any optimizer tip?
+     gold=['transformers/optimizers.md']
+     got =['peft/accelerate/deepspeed.md', 'transformers/troubleshooting.md', 'accelerate/basic_tutorials/troubleshooting.md']
+
+Found but not at rank 1: 6
+  h06 (rank 2): get_base_model_state_dict
+     gold=['peft/developer_guides/low_level_api.md']
+     got =['accelerate/usage_guides/fsdp.md', 'peft/developer_guides/low_level_api.md', 'transformers/modeling_rules.md']
+  h12 (rank 2): can I run several reward functions that call web services at the same time?
+     gold=['trl/grpo_trainer.md']
+     got =['trl/rloo_trainer.md', 'trl/grpo_trainer.md', 'trl/rloo_trainer.md']
+  h13 (rank 3): I built a brand-new model architecture; can I release it for Transformers users without opening a pull request to the library?
+     gold=['transformers/contributing.md']
+     got =['transformers/add_new_model.md', 'transformers/add_new_model.md', 'transformers/contributing.md']
+  h14 (rank 2): which gradient compression options cut communication cost across GPUs?
+     gold=['accelerate/usage_guides/ddp_comm_hook.md']
+     got =['accelerate/concept_guides/gradient_synchronization.md', 'accelerate/usage_guides/ddp_comm_hook.md', 'transformers/quantization/selecting.md']
+  h15 (rank 3): how do I lay out 4 accelerators as a grid for splitting a model at inference?
+     gold=['transformers/perf_infer_gpu_multi.md']
+     got =['accelerate/usage_guides/distributed_inference.md', 'accelerate/usage_guides/distributed_inference.md', 'transformers/perf_infer_gpu_multi.md']
+  h16 (rank 5): how do I talk to my local transformers server using the Hugging Face client?
+     gold=['transformers/serve-cli/serving.md']
+     got =['transformers/conversations.md', 'transformers/tasks/masked_language_modeling.md', 'transformers/contributing.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_c100_vector_hard_misses.json, abl_c100_vector_hard_weak.json
+
+Run: abl_c100_hybrid_rerank_hard
+Questions file: eval/questions_hard_v2.jsonl
+Embedding model: BAAI/bge-small-en-v1.5   heading embedded: True
+Config: mode=hybrid rerank=True pool=20 max_per_source=None
+Answerable questions: 20   avg latency: 579 ms/query
+
+  hit@1         0.750
+  hit@3         0.800
+  hit@5         0.900
+  hit@10        0.950
+  MRR           0.797
+  section_hit@5 0.900
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 4.631
+
+Misses (correct source not in top 10): 1
+  h11: my training loss keeps spiking with big batches, any optimizer tip?
+     gold=['transformers/optimizers.md']
+     got =['peft/accelerate/deepspeed.md', 'accelerate/basic_tutorials/migration.md', 'accelerate/concept_guides/gradient_synchronization.md']
+
+Found but not at rank 1: 4
+  h04 (rank 4): init_empty_weights
+     gold=['accelerate/usage_guides/big_modeling.md']
+     got =['accelerate/quicktour.md', 'accelerate/concept_guides/big_model_inference.md', 'accelerate/usage_guides/quantization.md']
+  h14 (rank 4): which gradient compression options cut communication cost across GPUs?
+     gold=['accelerate/usage_guides/ddp_comm_hook.md']
+     got =['transformers/deepspeed.md', 'transformers/fsdp.md', 'transformers/perf_train_gpu_many.md']
+  h15 (rank 3): how do I lay out 4 accelerators as a grid for splitting a model at inference?
+     gold=['transformers/perf_infer_gpu_multi.md']
+     got =['accelerate/usage_guides/distributed_inference.md', 'accelerate/usage_guides/big_modeling.md', 'transformers/perf_infer_gpu_multi.md']
+  h16 (rank 9): how do I talk to my local transformers server using the Hugging Face client?
+     gold=['transformers/serve-cli/serving.md']
+     got =['transformers/serve-cli/tiny_agents.md', 'transformers/tasks/object_detection.md', 'transformers/serve-cli/openweb_ui.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_c100_hybrid_rerank_hard_misses.json, abl_c100_hybrid_rerank_hard_weak.json
+Files processed : 474
+Chunks written  : 3004
+Tiny chunks dropped: 455
+Words per chunk : min=30  median=121  max=711
+Output          : /Users/amandasewwandi/Library/CloudStorage/OneDrive-sci.sjp.ac.lk/rag-ds-ai/data/processed/chunks_c400.jsonl
+=== c400: BAAI/bge-small-en-v1.5, 400-word chunks, heading=1 ===
+Loaded 3004 chunks
+Model: BAAI/bge-small-en-v1.5 (max_seq_length=512)
+Embedded in 128s, shape=(3004, 384)
+Indexed 3004 chunks into 'chunks_BAAI_bge-small-en-v1.5_h_c400' at /Users/amandasewwandi/.rag-ds-ai/index
+
+Run: abl_c400_vector_main
+Questions file: eval/questions.jsonl
+Embedding model: BAAI/bge-small-en-v1.5   heading embedded: True
+Config: mode=vector rerank=False pool=20 max_per_source=None
+Answerable questions: 35   avg latency: 21 ms/query
+
+  hit@1         0.800
+  hit@3         0.914
+  hit@5         0.943
+  hit@10        1.000
+  MRR           0.866
+  section_hit@5 0.914
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 0.822
+Top-1 score, unanswerable : mean 0.691  (n=5)
+
+Misses (correct source not in top 10): 0
+
+Found but not at rank 1: 7
+  q07 (rank 10): What learning rate range is suggested for DeLoRA compared with standard LoRA?
+     gold=['peft/package_reference/delora.md']
+     got =['trl/lora_without_regret.md', 'trl/peft_integration.md', 'peft/package_reference/miss.md']
+  q25 (rank 2): When using several models with DeepSpeed in Accelerate, which plugin is enabled by default and how can I verify it?
+     gold=['accelerate/usage_guides/deepspeed_multiple_model.md']
+     got =['accelerate/usage_guides/deepspeed.md', 'accelerate/usage_guides/deepspeed_multiple_model.md', 'accelerate/usage_guides/deepspeed_multiple_model.md']
+  q26 (rank 7): Which mixed precision format is recommended for TPU training with Accelerate, and how do I enable it?
+     gold=['accelerate/concept_guides/training_tpu.md']
+     got =['accelerate/basic_tutorials/migration.md', 'accelerate/usage_guides/low_precision_training.md', 'trl/speeding_up_training.md']
+  q28 (rank 3): What does the cpu_offload option do when configuring FSDP2 in Transformers?
+     gold=['transformers/fsdp.md']
+     got =['accelerate/concept_guides/fsdp_and_deepspeed.md', 'accelerate/concept_guides/fsdp_and_deepspeed.md', 'transformers/fsdp.md']
+  q31 (rank 2): Why is it easy to manage multiple tasks with one base model using PEFT adapters?
+     gold=['peft/guides/peft_integrations.md']
+     got =['peft/developer_guides/troubleshooting.md', 'peft/guides/peft_integrations.md', 'peft/quicktour.md']
+  q34 (rank 2): Why is splitting a batch across GPUs by loading a full model copy on each one memory-intensive?
+     gold=['accelerate/usage_guides/distributed_inference.md']
+     got =['transformers/perf_train_gpu_many.md', 'accelerate/usage_guides/distributed_inference.md', 'transformers/ddp.md']
+  q36 (rank 4): What are the default values of batch_size and writer_batch_size for map on image datasets, and why would I lower them?
+     gold=['datasets/image_process.md']
+     got =['datasets/process.md', 'datasets/about_map_batch.md', 'datasets/stream.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_c400_vector_main_misses.json, abl_c400_vector_main_weak.json
+
+Run: abl_c400_hybrid_rerank_main
+Questions file: eval/questions.jsonl
+Embedding model: BAAI/bge-small-en-v1.5   heading embedded: True
+Config: mode=hybrid rerank=True pool=20 max_per_source=None
+Answerable questions: 35   avg latency: 713 ms/query
+
+  hit@1         0.943
+  hit@3         1.000
+  hit@5         1.000
+  hit@10        1.000
+  MRR           0.967
+  section_hit@5 1.000
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 6.056
+Top-1 score, unanswerable : mean -4.117  (n=5)
+
+Misses (correct source not in top 10): 0
+
+Found but not at rank 1: 2
+  q26 (rank 2): Which mixed precision format is recommended for TPU training with Accelerate, and how do I enable it?
+     gold=['accelerate/concept_guides/training_tpu.md']
+     got =['accelerate/basic_tutorials/migration.md', 'accelerate/concept_guides/training_tpu.md', 'accelerate/basic_tutorials/install.md']
+  q36 (rank 3): What are the default values of batch_size and writer_batch_size for map on image datasets, and why would I lower them?
+     gold=['datasets/image_process.md']
+     got =['datasets/stream.md', 'datasets/process.md', 'datasets/image_process.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_c400_hybrid_rerank_main_misses.json, abl_c400_hybrid_rerank_main_weak.json
+
+Run: abl_c400_vector_hard
+Questions file: eval/questions_hard_v2.jsonl
+Embedding model: BAAI/bge-small-en-v1.5   heading embedded: True
+Config: mode=vector rerank=False pool=20 max_per_source=None
+Answerable questions: 20   avg latency: 14 ms/query
+
+  hit@1         0.450
+  hit@3         0.750
+  hit@5         0.750
+  hit@10        0.900
+  MRR           0.603
+  section_hit@5 0.650
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 0.775
+
+Misses (correct source not in top 10): 2
+  h04: init_empty_weights
+     gold=['accelerate/usage_guides/big_modeling.md']
+     got =['accelerate/quicktour.md', 'accelerate/concept_guides/big_model_inference.md', 'transformers/modeling_rules.md']
+  h11: my training loss keeps spiking with big batches, any optimizer tip?
+     gold=['transformers/optimizers.md']
+     got =['transformers/training.md', 'accelerate/usage_guides/deepspeed_multiple_model.md', 'trl/quickstart.md']
+
+Found but not at rank 1: 9
+  h02 (rank 8): weight_sync_steps
+     gold=['trl/async_distillation_trainer.md', 'trl/async_grpo_trainer.md']
+     got =['transformers/weightconverter.md', 'accelerate/usage_guides/local_sgd.md', 'transformers/weightconverter.md']
+  h06 (rank 2): get_base_model_state_dict
+     gold=['peft/developer_guides/low_level_api.md']
+     got =['accelerate/usage_guides/fsdp.md', 'peft/developer_guides/low_level_api.md', 'transformers/modeling_rules.md']
+  h07 (rank 2): _supports_assign_param_buffer
+     gold=['transformers/main_classes/model.md']
+     got =['transformers/modeling_rules.md', 'transformers/main_classes/model.md', 'accelerate/concept_guides/context_parallelism.md']
+  h10 (rank 2): I stored audio in a dataset but I want the file path, not decoded arrays
+     gold=['datasets/about_dataset_features.md']
+     got =['datasets/audio_load.md', 'datasets/about_dataset_features.md', 'datasets/audio_load.md']
+  h12 (rank 3): can I run several reward functions that call web services at the same time?
+     gold=['trl/grpo_trainer.md']
+     got =['trl/rloo_trainer.md', 'trl/rloo_trainer.md', 'trl/grpo_trainer.md']
+  h13 (rank 3): I built a brand-new model architecture; can I release it for Transformers users without opening a pull request to the library?
+     gold=['transformers/contributing.md']
+     got =['transformers/add_new_model.md', 'transformers/add_new_model.md', 'transformers/contributing.md']
+  h15 (rank 7): how do I lay out 4 accelerators as a grid for splitting a model at inference?
+     gold=['transformers/perf_infer_gpu_multi.md']
+     got =['accelerate/usage_guides/distributed_inference.md', 'accelerate/usage_guides/big_modeling.md', 'accelerate/usage_guides/distributed_inference.md']
+  h16 (rank 8): how do I talk to my local transformers server using the Hugging Face client?
+     gold=['transformers/serve-cli/serving.md']
+     got =['transformers/conversations.md', 'transformers/quicktour.md', 'transformers/model_sharing.md']
+  h20 (rank 2): which logged metric shows how random my policy's choices are in online DPO?
+     gold=['trl/online_dpo_trainer.md']
+     got =['trl/dpo_trainer.md', 'trl/online_dpo_trainer.md', 'trl/orpo_trainer.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_c400_vector_hard_misses.json, abl_c400_vector_hard_weak.json
+
+Run: abl_c400_hybrid_rerank_hard
+Questions file: eval/questions_hard_v2.jsonl
+Embedding model: BAAI/bge-small-en-v1.5   heading embedded: True
+Config: mode=hybrid rerank=True pool=20 max_per_source=None
+Answerable questions: 20   avg latency: 743 ms/query
+
+  hit@1         0.750
+  hit@3         0.800
+  hit@5         0.950
+  hit@10        1.000
+  MRR           0.816
+  section_hit@5 0.850
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 4.434
+
+Misses (correct source not in top 10): 0
+
+Found but not at rank 1: 5
+  h04 (rank 6): init_empty_weights
+     gold=['accelerate/usage_guides/big_modeling.md']
+     got =['accelerate/quicktour.md', 'accelerate/concept_guides/big_model_inference.md', 'accelerate/quicktour.md']
+  h11 (rank 5): my training loss keeps spiking with big batches, any optimizer tip?
+     gold=['transformers/optimizers.md']
+     got =['accelerate/basic_tutorials/troubleshooting.md', 'accelerate/concept_guides/gradient_synchronization.md', 'accelerate/usage_guides/gradient_accumulation.md']
+  h14 (rank 5): which gradient compression options cut communication cost across GPUs?
+     gold=['accelerate/usage_guides/ddp_comm_hook.md']
+     got =['transformers/deepspeed.md', 'transformers/fsdp.md', 'accelerate/usage_guides/megatron_lm.md']
+  h15 (rank 4): how do I lay out 4 accelerators as a grid for splitting a model at inference?
+     gold=['transformers/perf_infer_gpu_multi.md']
+     got =['transformers/pipeline_tutorial.md', 'accelerate/usage_guides/distributed_inference.md', 'accelerate/usage_guides/distributed_inference.md']
+  h16 (rank 2): how do I talk to my local transformers server using the Hugging Face client?
+     gold=['transformers/serve-cli/serving.md']
+     got =['transformers/serve-cli/tiny_agents.md', 'transformers/serve-cli/serving.md', 'transformers/serve-cli/openweb_ui.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_c400_hybrid_rerank_hard_misses.json, abl_c400_hybrid_rerank_hard_weak.json
+=== nohead: BAAI/bge-small-en-v1.5, 200-word chunks, heading=0 ===
+Loaded 3859 chunks
+Model: BAAI/bge-small-en-v1.5 (max_seq_length=512)
+Embedded in 169s, shape=(3859, 384)
+Indexed 3859 chunks into 'chunks_BAAI_bge-small-en-v1.5' at /Users/amandasewwandi/.rag-ds-ai/index
+
+Run: abl_nohead_vector_main
+Questions file: eval/questions.jsonl
+Embedding model: BAAI/bge-small-en-v1.5   heading embedded: False
+Config: mode=vector rerank=False pool=20 max_per_source=None
+Answerable questions: 35   avg latency: 16 ms/query
+
+  hit@1         0.771
+  hit@3         0.914
+  hit@5         0.914
+  hit@10        0.971
+  MRR           0.843
+  section_hit@5 0.886
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 0.828
+Top-1 score, unanswerable : mean 0.700  (n=5)
+
+Misses (correct source not in top 10): 1
+  q26: Which mixed precision format is recommended for TPU training with Accelerate, and how do I enable it?
+     gold=['accelerate/concept_guides/training_tpu.md']
+     got =['accelerate/basic_tutorials/migration.md', 'accelerate/basic_tutorials/tpu.md', 'accelerate/basic_tutorials/install.md']
+
+Found but not at rank 1: 7
+  q04 (rank 3): Which loss does the TRL distillation trainer use between the student and teacher distributions?
+     gold=['trl/distillation_trainer.md']
+     got =['trl/paper_index.md', 'trl/clis.md', 'trl/distillation_trainer.md']
+  q21 (rank 3): What is colocate mode for vLLM generation in GRPOTrainer, and what is its trade-off?
+     gold=['trl/grpo_trainer.md']
+     got =['trl/vllm_integration.md', 'trl/openenv.md', 'trl/grpo_trainer.md']
+  q25 (rank 2): When using several models with DeepSpeed in Accelerate, which plugin is enabled by default and how can I verify it?
+     gold=['accelerate/usage_guides/deepspeed_multiple_model.md']
+     got =['accelerate/usage_guides/deepspeed.md', 'accelerate/usage_guides/deepspeed_multiple_model.md', 'accelerate/usage_guides/deepspeed_multiple_model.md']
+  q28 (rank 6): What does the cpu_offload option do when configuring FSDP2 in Transformers?
+     gold=['transformers/fsdp.md']
+     got =['accelerate/concept_guides/fsdp_and_deepspeed.md', 'accelerate/concept_guides/fsdp_and_deepspeed.md', 'accelerate/concept_guides/fsdp1_vs_fsdp2.md']
+  q31 (rank 2): Why is it easy to manage multiple tasks with one base model using PEFT adapters?
+     gold=['peft/guides/peft_integrations.md']
+     got =['peft/developer_guides/troubleshooting.md', 'peft/guides/peft_integrations.md', 'peft/quicktour.md']
+  q34 (rank 6): Why is splitting a batch across GPUs by loading a full model copy on each one memory-intensive?
+     gold=['accelerate/usage_guides/distributed_inference.md']
+     got =['accelerate/concept_guides/big_model_inference.md', 'transformers/perf_train_gpu_many.md', 'transformers/perf_train_gpu_many.md']
+  q39 (rank 2): How much memory does an 8B model need in float32 by default, and how can I reduce it?
+     gold=['transformers/conversations.md']
+     got =['transformers/llm_tutorial_optimization.md', 'transformers/conversations.md', 'transformers/quantization/bitsandbytes.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_nohead_vector_main_misses.json, abl_nohead_vector_main_weak.json
+
+Run: abl_nohead_hybrid_rerank_main
+Questions file: eval/questions.jsonl
+Embedding model: BAAI/bge-small-en-v1.5   heading embedded: False
+Config: mode=hybrid rerank=True pool=20 max_per_source=None
+Answerable questions: 35   avg latency: 670 ms/query
+
+  hit@1         0.943
+  hit@3         1.000
+  hit@5         1.000
+  hit@10        1.000
+  MRR           0.967
+  section_hit@5 0.971
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 6.406
+Top-1 score, unanswerable : mean -4.376  (n=5)
+
+Misses (correct source not in top 10): 0
+
+Found but not at rank 1: 2
+  q26 (rank 2): Which mixed precision format is recommended for TPU training with Accelerate, and how do I enable it?
+     gold=['accelerate/concept_guides/training_tpu.md']
+     got =['accelerate/basic_tutorials/migration.md', 'accelerate/concept_guides/training_tpu.md', 'trl/customization.md']
+  q34 (rank 3): Why is splitting a batch across GPUs by loading a full model copy on each one memory-intensive?
+     gold=['accelerate/usage_guides/distributed_inference.md']
+     got =['transformers/perf_train_gpu_many.md', 'accelerate/concept_guides/big_model_inference.md', 'accelerate/usage_guides/distributed_inference.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_nohead_hybrid_rerank_main_misses.json, abl_nohead_hybrid_rerank_main_weak.json
+
+Run: abl_nohead_vector_hard
+Questions file: eval/questions_hard_v2.jsonl
+Embedding model: BAAI/bge-small-en-v1.5   heading embedded: False
+Config: mode=vector rerank=False pool=20 max_per_source=None
+Answerable questions: 20   avg latency: 23 ms/query
+
+  hit@1         0.400
+  hit@3         0.700
+  hit@5         0.800
+  hit@10        0.850
+  MRR           0.552
+  section_hit@5 0.700
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 0.781
+
+Misses (correct source not in top 10): 3
+  h04: init_empty_weights
+     gold=['accelerate/usage_guides/big_modeling.md']
+     got =['accelerate/quicktour.md', 'accelerate/concept_guides/big_model_inference.md', 'transformers/modeling_rules.md']
+  h15: how do I lay out 4 accelerators as a grid for splitting a model at inference?
+     gold=['transformers/perf_infer_gpu_multi.md']
+     got =['accelerate/usage_guides/deepspeed_multiple_model.md', 'accelerate/usage_guides/big_modeling.md', 'accelerate/usage_guides/distributed_inference.md']
+  h16: how do I talk to my local transformers server using the Hugging Face client?
+     gold=['transformers/serve-cli/serving.md']
+     got =['transformers/conversations.md', 'transformers/tasks/object_detection.md', 'transformers/model_sharing.md']
+
+Found but not at rank 1: 9
+  h01 (rank 3): TRF058
+     gold=['transformers/modeling_rules.md']
+     got =['trl/paper_index.md', 'transformers/community_integrations/trl.md', 'transformers/modeling_rules.md']
+  h02 (rank 10): weight_sync_steps
+     gold=['trl/async_distillation_trainer.md', 'trl/async_grpo_trainer.md']
+     got =['accelerate/usage_guides/local_sgd.md', 'transformers/weightconverter.md', 'accelerate/concept_guides/gradient_synchronization.md']
+  h06 (rank 2): get_base_model_state_dict
+     gold=['peft/developer_guides/low_level_api.md']
+     got =['accelerate/usage_guides/fsdp.md', 'peft/developer_guides/low_level_api.md', 'peft/developer_guides/low_level_api.md']
+  h07 (rank 2): _supports_assign_param_buffer
+     gold=['transformers/main_classes/model.md']
+     got =['transformers/modeling_rules.md', 'transformers/main_classes/model.md', 'transformers/pipeline_tutorial.md']
+  h09 (rank 2): quick way to check that my PyTorch install can use my NVIDIA graphics cards
+     gold=['transformers/nvidia_gpu.md']
+     got =['peft/install.md', 'transformers/nvidia_gpu.md', 'transformers/intel_gpu.md']
+  h11 (rank 4): my training loss keeps spiking with big batches, any optimizer tip?
+     gold=['transformers/optimizers.md']
+     got =['transformers/main_classes/pipelines.md', 'transformers/troubleshooting.md', 'transformers/grad_accumulation.md']
+  h12 (rank 3): can I run several reward functions that call web services at the same time?
+     gold=['trl/grpo_trainer.md']
+     got =['trl/rloo_trainer.md', 'trl/rloo_trainer.md', 'trl/grpo_trainer.md']
+  h13 (rank 3): I built a brand-new model architecture; can I release it for Transformers users without opening a pull request to the library?
+     gold=['transformers/contributing.md']
+     got =['transformers/add_new_model.md', 'transformers/add_new_model.md', 'transformers/contributing.md']
+  h20 (rank 5): which logged metric shows how random my policy's choices are in online DPO?
+     gold=['trl/online_dpo_trainer.md']
+     got =['trl/orpo_trainer.md', 'trl/cpo_trainer.md', 'trl/dpo_trainer.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_nohead_vector_hard_misses.json, abl_nohead_vector_hard_weak.json
+
+Run: abl_nohead_hybrid_rerank_hard
+Questions file: eval/questions_hard_v2.jsonl
+Embedding model: BAAI/bge-small-en-v1.5   heading embedded: False
+Config: mode=hybrid rerank=True pool=20 max_per_source=None
+Answerable questions: 20   avg latency: 759 ms/query
+
+  hit@1         0.800
+  hit@3         0.900
+  hit@5         0.950
+  hit@10        1.000
+  MRR           0.871
+  section_hit@5 0.850
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 4.498
+
+Misses (correct source not in top 10): 0
+
+Found but not at rank 1: 4
+  h04 (rank 6): init_empty_weights
+     gold=['accelerate/usage_guides/big_modeling.md']
+     got =['accelerate/quicktour.md', 'accelerate/concept_guides/big_model_inference.md', 'accelerate/quicktour.md']
+  h14 (rank 4): which gradient compression options cut communication cost across GPUs?
+     gold=['accelerate/usage_guides/ddp_comm_hook.md']
+     got =['transformers/deepspeed.md', 'transformers/fsdp.md', 'transformers/perf_train_gpu_many.md']
+  h15 (rank 2): how do I lay out 4 accelerators as a grid for splitting a model at inference?
+     gold=['transformers/perf_infer_gpu_multi.md']
+     got =['accelerate/usage_guides/big_modeling.md', 'transformers/perf_infer_gpu_multi.md', 'transformers/pipeline_tutorial.md']
+  h16 (rank 2): how do I talk to my local transformers server using the Hugging Face client?
+     gold=['transformers/serve-cli/serving.md']
+     got =['transformers/serve-cli/tiny_agents.md', 'transformers/serve-cli/serving.md', 'transformers/tasks/object_detection.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_nohead_hybrid_rerank_hard_misses.json, abl_nohead_hybrid_rerank_hard_weak.json
+=== minilm: sentence-transformers/all-MiniLM-L6-v2, 200-word chunks, heading=1 ===
+Loaded 3859 chunks
+Model: sentence-transformers/all-MiniLM-L6-v2 (max_seq_length=256)
+Embedded in 45s, shape=(3859, 384)
+Indexed 3859 chunks into 'chunks_sentence-transformers_all-MiniLM-L6-v2_h' at /Users/amandasewwandi/.rag-ds-ai/index
+
+Run: abl_minilm_vector_main
+Questions file: eval/questions.jsonl
+Embedding model: sentence-transformers/all-MiniLM-L6-v2   heading embedded: True
+Config: mode=vector rerank=False pool=20 max_per_source=None
+Answerable questions: 35   avg latency: 12 ms/query
+
+  hit@1         0.714
+  hit@3         0.886
+  hit@5         0.914
+  hit@10        0.971
+  MRR           0.811
+  section_hit@5 0.886
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 0.668
+Top-1 score, unanswerable : mean 0.421  (n=5)
+
+Misses (correct source not in top 10): 1
+  q34: Why is splitting a batch across GPUs by loading a full model copy on each one memory-intensive?
+     gold=['accelerate/usage_guides/distributed_inference.md']
+     got =['accelerate/basic_tutorials/troubleshooting.md', 'trl/long_context_training.md', 'transformers/perf_train_gpu_many.md']
+
+Found but not at rank 1: 9
+  q04 (rank 2): Which loss does the TRL distillation trainer use between the student and teacher distributions?
+     gold=['trl/distillation_trainer.md']
+     got =['trl/async_distillation_trainer.md', 'trl/distillation_trainer.md', 'trl/distillation_trainer.md']
+  q07 (rank 4): What learning rate range is suggested for DeLoRA compared with standard LoRA?
+     gold=['peft/package_reference/delora.md']
+     got =['trl/lora_without_regret.md', 'trl/peft_integration.md', 'trl/peft_integration.md']
+  q25 (rank 3): When using several models with DeepSpeed in Accelerate, which plugin is enabled by default and how can I verify it?
+     gold=['accelerate/usage_guides/deepspeed_multiple_model.md']
+     got =['accelerate/usage_guides/deepspeed.md', 'accelerate/usage_guides/deepspeed.md', 'accelerate/usage_guides/deepspeed_multiple_model.md']
+  q26 (rank 6): Which mixed precision format is recommended for TPU training with Accelerate, and how do I enable it?
+     gold=['accelerate/concept_guides/training_tpu.md']
+     got =['accelerate/usage_guides/low_precision_training.md', 'accelerate/package_reference/cli.md', 'accelerate/package_reference/cli.md']
+  q28 (rank 2): What does the cpu_offload option do when configuring FSDP2 in Transformers?
+     gold=['transformers/fsdp.md']
+     got =['accelerate/concept_guides/fsdp_and_deepspeed.md', 'transformers/fsdp.md', 'accelerate/concept_guides/fsdp_and_deepspeed.md']
+  q29 (rank 2): How do I switch between runtimes when exporting a model with the Transformers exporters?
+     gold=['transformers/exporters.md']
+     got =['transformers/serialization.md', 'transformers/exporters.md', 'transformers/exporters.md']
+  q31 (rank 2): Why is it easy to manage multiple tasks with one base model using PEFT adapters?
+     gold=['peft/guides/peft_integrations.md']
+     got =['peft/developer_guides/troubleshooting.md', 'peft/guides/peft_integrations.md', 'peft/quicktour.md']
+  q32 (rank 2): What do I get back from an Audio feature if I set decode=False?
+     gold=['datasets/about_dataset_features.md']
+     got =['transformers/feature_extractors.md', 'datasets/about_dataset_features.md', 'datasets/audio_load.md']
+  q37 (rank 7): Which StateDictType is recommended for checkpointing FSDP models with Accelerate, and how do I save a checkpoint?
+     gold=['accelerate/usage_guides/fsdp.md']
+     got =['accelerate/concept_guides/fsdp_and_deepspeed.md', 'transformers/fsdp.md', 'transformers/expert_parallelism.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_minilm_vector_main_misses.json, abl_minilm_vector_main_weak.json
+
+Run: abl_minilm_hybrid_rerank_main
+Questions file: eval/questions.jsonl
+Embedding model: sentence-transformers/all-MiniLM-L6-v2   heading embedded: True
+Config: mode=hybrid rerank=True pool=20 max_per_source=None
+Answerable questions: 35   avg latency: 702 ms/query
+
+  hit@1         0.943
+  hit@3         1.000
+  hit@5         1.000
+  hit@10        1.000
+  MRR           0.967
+  section_hit@5 1.000
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 6.453
+Top-1 score, unanswerable : mean -3.761  (n=5)
+
+Misses (correct source not in top 10): 0
+
+Found but not at rank 1: 2
+  q26 (rank 2): Which mixed precision format is recommended for TPU training with Accelerate, and how do I enable it?
+     gold=['accelerate/concept_guides/training_tpu.md']
+     got =['accelerate/basic_tutorials/migration.md', 'accelerate/concept_guides/training_tpu.md', 'trl/customization.md']
+  q34 (rank 3): Why is splitting a batch across GPUs by loading a full model copy on each one memory-intensive?
+     gold=['accelerate/usage_guides/distributed_inference.md']
+     got =['transformers/perf_train_gpu_many.md', 'accelerate/concept_guides/big_model_inference.md', 'accelerate/usage_guides/distributed_inference.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_minilm_hybrid_rerank_main_misses.json, abl_minilm_hybrid_rerank_main_weak.json
+
+Run: abl_minilm_vector_hard
+Questions file: eval/questions_hard_v2.jsonl
+Embedding model: sentence-transformers/all-MiniLM-L6-v2   heading embedded: True
+Config: mode=vector rerank=False pool=20 max_per_source=None
+Answerable questions: 20   avg latency: 16 ms/query
+
+  hit@1         0.550
+  hit@3         0.650
+  hit@5         0.800
+  hit@10        0.800
+  MRR           0.635
+  section_hit@5 0.600
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 0.568
+
+Misses (correct source not in top 10): 4
+  h04: init_empty_weights
+     gold=['accelerate/usage_guides/big_modeling.md']
+     got =['transformers/modeling_rules.md', 'transformers/modeling_rules.md', 'peft/package_reference/miss.md']
+  h05: get_active_deepspeed_plugin
+     gold=['accelerate/usage_guides/deepspeed_multiple_model.md']
+     got =['accelerate/usage_guides/deepspeed.md', 'accelerate/usage_guides/deepspeed.md', 'accelerate/usage_guides/deepspeed.md']
+  h07: _supports_assign_param_buffer
+     gold=['transformers/main_classes/model.md']
+     got =['transformers/modeling_rules.md', 'transformers/auto_docstring.md', 'transformers/add_new_pipeline.md']
+  h16: how do I talk to my local transformers server using the Hugging Face client?
+     gold=['transformers/serve-cli/serving.md']
+     got =['transformers/model_sharing.md', 'transformers/tasks/object_detection.md', 'datasets/troubleshoot.md']
+
+Found but not at rank 1: 5
+  h02 (rank 5): weight_sync_steps
+     gold=['trl/async_distillation_trainer.md', 'trl/async_grpo_trainer.md']
+     got =['transformers/weightconverter.md', 'transformers/modular_transformers.md', 'trl/vllm_integration.md']
+  h06 (rank 2): get_base_model_state_dict
+     gold=['peft/developer_guides/low_level_api.md']
+     got =['transformers/main_classes/output.md', 'peft/developer_guides/low_level_api.md', 'accelerate/usage_guides/fsdp.md']
+  h09 (rank 2): quick way to check that my PyTorch install can use my NVIDIA graphics cards
+     gold=['transformers/nvidia_gpu.md']
+     got =['peft/install.md', 'transformers/nvidia_gpu.md', 'transformers/nvidia_gpu.md']
+  h15 (rank 4): how do I lay out 4 accelerators as a grid for splitting a model at inference?
+     gold=['transformers/perf_infer_gpu_multi.md']
+     got =['transformers/glossary.md', 'accelerate/usage_guides/distributed_inference.md', 'transformers/community_integrations/transformers_as_backend.md']
+  h20 (rank 4): which logged metric shows how random my policy's choices are in online DPO?
+     gold=['trl/online_dpo_trainer.md']
+     got =['trl/cpo_trainer.md', 'trl/orpo_trainer.md', 'trl/dpo_trainer.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_minilm_vector_hard_misses.json, abl_minilm_vector_hard_weak.json
+
+Run: abl_minilm_hybrid_rerank_hard
+Questions file: eval/questions_hard_v2.jsonl
+Embedding model: sentence-transformers/all-MiniLM-L6-v2   heading embedded: True
+Config: mode=hybrid rerank=True pool=20 max_per_source=None
+Answerable questions: 20   avg latency: 771 ms/query
+
+  hit@1         0.800
+  hit@3         0.900
+  hit@5         0.950
+  hit@10        1.000
+  MRR           0.871
+  section_hit@5 0.900
+
+(top-1 scores below are on the scale of the chosen mode)
+Top-1 score, answerable   : mean 4.828
+
+Misses (correct source not in top 10): 0
+
+Found but not at rank 1: 4
+  h04 (rank 6): init_empty_weights
+     gold=['accelerate/usage_guides/big_modeling.md']
+     got =['accelerate/quicktour.md', 'accelerate/concept_guides/big_model_inference.md', 'accelerate/quicktour.md']
+  h14 (rank 4): which gradient compression options cut communication cost across GPUs?
+     gold=['accelerate/usage_guides/ddp_comm_hook.md']
+     got =['transformers/deepspeed.md', 'transformers/fsdp.md', 'transformers/perf_train_gpu_many.md']
+  h15 (rank 2): how do I lay out 4 accelerators as a grid for splitting a model at inference?
+     gold=['transformers/perf_infer_gpu_multi.md']
+     got =['accelerate/usage_guides/distributed_inference.md', 'transformers/perf_infer_gpu_multi.md', 'accelerate/usage_guides/distributed_inference.md']
+  h16 (rank 2): how do I talk to my local transformers server using the Hugging Face client?
+     gold=['transformers/serve-cli/serving.md']
+     got =['transformers/serve-cli/tiny_agents.md', 'transformers/serve-cli/serving.md', 'transformers/tasks/object_detection.md']
+
+Saved to eval/results: runs.jsonl (appended), abl_minilm_hybrid_rerank_hard_misses.json, abl_minilm_hybrid_rerank_hard_weak.json
+done

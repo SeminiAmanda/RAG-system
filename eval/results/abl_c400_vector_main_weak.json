@@ -1,0 +1,93 @@
+[
+  {
+    "id": "q07",
+    "question": "What learning rate range is suggested for DeLoRA compared with standard LoRA?",
+    "gold": [
+      "peft/package_reference/delora.md"
+    ],
+    "rank": 10,
+    "got": [
+      "trl/lora_without_regret.md",
+      "trl/peft_integration.md",
+      "peft/package_reference/miss.md"
+    ]
+  },
+  {
+    "id": "q25",
+    "question": "When using several models with DeepSpeed in Accelerate, which plugin is enabled by default and how can I verify it?",
+    "gold": [
+      "accelerate/usage_guides/deepspeed_multiple_model.md"
+    ],
+    "rank": 2,
+    "got": [
+      "accelerate/usage_guides/deepspeed.md",
+      "accelerate/usage_guides/deepspeed_multiple_model.md",
+      "accelerate/usage_guides/deepspeed_multiple_model.md"
+    ]
+  },
+  {
+    "id": "q26",
+    "question": "Which mixed precision format is recommended for TPU training with Accelerate, and how do I enable it?",
+    "gold": [
+      "accelerate/concept_guides/training_tpu.md"
+    ],
+    "rank": 7,
+    "got": [
+      "accelerate/basic_tutorials/migration.md",
+      "accelerate/usage_guides/low_precision_training.md",
+      "trl/speeding_up_training.md"
+    ]
+  },
+  {
+    "id": "q28",
+    "question": "What does the cpu_offload option do when configuring FSDP2 in Transformers?",
+    "gold": [
+      "transformers/fsdp.md"
+    ],
+    "rank": 3,
+    "got": [
+      "accelerate/concept_guides/fsdp_and_deepspeed.md",
+      "accelerate/concept_guides/fsdp_and_deepspeed.md",
+      "transformers/fsdp.md"
+    ]
+  },
+  {
+    "id": "q31",
+    "question": "Why is it easy to manage multiple tasks with one base model using PEFT adapters?",
+    "gold": [
+      "peft/guides/peft_integrations.md"
+    ],
+    "rank": 2,
+    "got": [
+      "peft/developer_guides/troubleshooting.md",
+      "peft/guides/peft_integrations.md",
+      "peft/quicktour.md"
+    ]
+  },
+  {
+    "id": "q34",
+    "question": "Why is splitting a batch across GPUs by loading a full model copy on each one memory-intensive?",
+    "gold": [
+      "accelerate/usage_guides/distributed_inference.md"
+    ],
+    "rank": 2,
+    "got": [
+      "transformers/perf_train_gpu_many.md",
+      "accelerate/usage_guides/distributed_inference.md",
+      "transformers/ddp.md"
+    ]
+  },
+  {
+    "id": "q36",
+    "question": "What are the default values of batch_size and writer_batch_size for map on image datasets, and why would I lower them?",
+    "gold": [
+      "datasets/image_process.md"
+    ],
+    "rank": 4,
+    "got": [
+      "datasets/process.md",
+      "datasets/about_map_batch.md",
+      "datasets/stream.md"
+    ]
+  }
+]

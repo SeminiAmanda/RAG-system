@@ -1,0 +1,93 @@
+[
+  {
+    "id": "q04",
+    "question": "Which loss does the TRL distillation trainer use between the student and teacher distributions?",
+    "gold": [
+      "trl/distillation_trainer.md"
+    ],
+    "rank": 3,
+    "got": [
+      "trl/paper_index.md",
+      "trl/clis.md",
+      "trl/distillation_trainer.md"
+    ]
+  },
+  {
+    "id": "q21",
+    "question": "What is colocate mode for vLLM generation in GRPOTrainer, and what is its trade-off?",
+    "gold": [
+      "trl/grpo_trainer.md"
+    ],
+    "rank": 3,
+    "got": [
+      "trl/vllm_integration.md",
+      "trl/openenv.md",
+      "trl/grpo_trainer.md"
+    ]
+  },
+  {
+    "id": "q25",
+    "question": "When using several models with DeepSpeed in Accelerate, which plugin is enabled by default and how can I verify it?",
+    "gold": [
+      "accelerate/usage_guides/deepspeed_multiple_model.md"
+    ],
+    "rank": 2,
+    "got": [
+      "accelerate/usage_guides/deepspeed.md",
+      "accelerate/usage_guides/deepspeed_multiple_model.md",
+      "accelerate/usage_guides/deepspeed_multiple_model.md"
+    ]
+  },
+  {
+    "id": "q28",
+    "question": "What does the cpu_offload option do when configuring FSDP2 in Transformers?",
+    "gold": [
+      "transformers/fsdp.md"
+    ],
+    "rank": 6,
+    "got": [
+      "accelerate/concept_guides/fsdp_and_deepspeed.md",
+      "accelerate/concept_guides/fsdp_and_deepspeed.md",
+      "accelerate/concept_guides/fsdp1_vs_fsdp2.md"
+    ]
+  },
+  {
+    "id": "q31",
+    "question": "Why is it easy to manage multiple tasks with one base model using PEFT adapters?",
+    "gold": [
+      "peft/guides/peft_integrations.md"
+    ],
+    "rank": 2,
+    "got": [
+      "peft/developer_guides/troubleshooting.md",
+      "peft/guides/peft_integrations.md",
+      "peft/quicktour.md"
+    ]
+  },
+  {
+    "id": "q34",
+    "question": "Why is splitting a batch across GPUs by loading a full model copy on each one memory-intensive?",
+    "gold": [
+      "accelerate/usage_guides/distributed_inference.md"
+    ],
+    "rank": 6,
+    "got": [
+      "accelerate/concept_guides/big_model_inference.md",
+      "transformers/perf_train_gpu_many.md",
+      "transformers/perf_train_gpu_many.md"
+    ]
+  },
+  {
+    "id": "q39",
+    "question": "How much memory does an 8B model need in float32 by default, and how can I reduce it?",
+    "gold": [
+      "transformers/conversations.md"
+    ],
+    "rank": 2,
+    "got": [
+      "transformers/llm_tutorial_optimization.md",
+      "transformers/conversations.md",
+      "transformers/quantization/bitsandbytes.md"
+    ]
+  }
+]

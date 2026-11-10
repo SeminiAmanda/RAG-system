@@ -1,0 +1,15 @@
+[
+  {
+    "id": "q36",
+    "question": "What are the default values of batch_size and writer_batch_size for map on image datasets, and why would I lower them?",
+    "gold": [
+      "datasets/image_process.md"
+    ],
+    "rank": 5,
+    "got": [
+      "datasets/stream.md",
+      "datasets/process.md",
+      "datasets/tsfile_load.md"
+    ]
+  }
+]

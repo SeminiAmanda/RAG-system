@@ -1,0 +1,31 @@
+=== base: BAAI/bge-small-en-v1.5, 200-word chunks, heading=1 ===
+Files processed : 474
+Chunks written  : 5936
+Tiny chunks dropped: 844
+Words per chunk : min=30  median=78  max=201
+Output          : /Users/amandasewwandi/Library/CloudStorage/OneDrive-sci.sjp.ac.lk/rag-ds-ai/data/processed/chunks_c100.jsonl
+=== c100: BAAI/bge-small-en-v1.5, 100-word chunks, heading=1 ===
+Loaded 5936 chunks
+Model: BAAI/bge-small-en-v1.5 (max_seq_length=512)
+Embedded in 157s, shape=(5936, 384)
+Indexed 5936 chunks into 'chunks_BAAI_bge-small-en-v1.5_h_c100' at /Users/amandasewwandi/.rag-ds-ai/index
+Files processed : 474
+Chunks written  : 3004
+Tiny chunks dropped: 455
+Words per chunk : min=30  median=121  max=711
+Output          : /Users/amandasewwandi/Library/CloudStorage/OneDrive-sci.sjp.ac.lk/rag-ds-ai/data/processed/chunks_c400.jsonl
+=== c400: BAAI/bge-small-en-v1.5, 400-word chunks, heading=1 ===
+Loaded 3004 chunks
+Model: BAAI/bge-small-en-v1.5 (max_seq_length=512)
+Embedded in 128s, shape=(3004, 384)
+Indexed 3004 chunks into 'chunks_BAAI_bge-small-en-v1.5_h_c400' at /Users/amandasewwandi/.rag-ds-ai/index
+=== nohead: BAAI/bge-small-en-v1.5, 200-word chunks, heading=0 ===
+Loaded 3859 chunks
+Model: BAAI/bge-small-en-v1.5 (max_seq_length=512)
+Embedded in 169s, shape=(3859, 384)
+Indexed 3859 chunks into 'chunks_BAAI_bge-small-en-v1.5' at /Users/amandasewwandi/.rag-ds-ai/index
+=== minilm: sentence-transformers/all-MiniLM-L6-v2, 200-word chunks, heading=1 ===
+Loaded 3859 chunks
+Model: sentence-transformers/all-MiniLM-L6-v2 (max_seq_length=256)
+Embedded in 45s, shape=(3859, 384)
+Indexed 3859 chunks into 'chunks_sentence-transformers_all-MiniLM-L6-v2_h' at /Users/amandasewwandi/.rag-ds-ai/index
