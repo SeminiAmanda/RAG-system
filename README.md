@@ -1,4 +1,5 @@
-Deploy https://rag-system-kox4gtbnepmpttc4hyawg7.streamlit.app/
+
+🔗 **[Live Dashboard](https://rag-system-kox4gtbnepmpttc4hyawg7.streamlit.app/)**
 ---
 title: Ask the Hugging Face docs
 emoji: 📚
