@@ -6,14 +6,21 @@ Streamlit demo: ask questions about the Hugging Face docs.
 """
 import json
 import os
+import tempfile
 import time
 from pathlib import Path
 
-import streamlit as st
+# A deployed copy has no git-ignored data/ folder: use the committed snapshot instead.
+if not Path("data/processed/chunks.jsonl").exists():
+    os.environ.setdefault("CHUNKS_PATH", "corpus/chunks.jsonl")
+    os.environ.setdefault("INDEX_DIR", str(Path(tempfile.gettempdir()) / "rag-index"))
 
-from generate import generate
-from retrieve import Retriever
-from textutils import extract_citations
+import streamlit as st  # noqa: E402
+
+from build_index import ensure_index  # noqa: E402
+from generate import generate  # noqa: E402
+from retrieve import Retriever  # noqa: E402
+from textutils import extract_citations  # noqa: E402
 
 REFUSAL = "I don't know based on the provided documents."
 DOCS_BASE = "https://huggingface.co/docs"
@@ -28,8 +35,9 @@ EXAMPLES = [
 st.set_page_config(page_title="Ask the Hugging Face docs", page_icon="📚", layout="wide")
 
 
-@st.cache_resource(show_spinner="Loading models and index (first start only)...")
+@st.cache_resource(show_spinner="Starting up: building the index and loading models (first start only)...")
 def load_retriever():
+    ensure_index()
     retriever = Retriever()
     retriever.search("warm up", k=1, mode="hybrid", rerank=True)  # loads the reranker too
     return retriever
