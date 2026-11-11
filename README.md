@@ -1,5 +1,3 @@
-
-🔗 **[Live Dashboard](https://rag-system-kox4gtbnepmpttc4hyawg7.streamlit.app/)**
 ---
 title: Ask the Hugging Face docs
 emoji: 📚
@@ -7,7 +5,7 @@ sdk: docker
 app_port: 7860
 pinned: false
 ---
-
+🔗 **[Live Dashboard](https://rag-system-kox4gtbnepmpttc4hyawg7.streamlit.app/)**
 # Ask the Hugging Face docs: a RAG system, measured
 
 Question answering over the documentation of `transformers`, `peft`, `datasets`,
